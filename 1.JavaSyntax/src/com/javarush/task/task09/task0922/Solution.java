@@ -2,40 +2,34 @@ package com.javarush.task.task09.task0922;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Scanner;
 
 /* 
 Какое сегодня число?
 */
 
 public class Solution {
-    
+
     public static void main(String[] args) throws Exception {
         //напишите тут ваш код
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
         
+        String s = scanner.nextLine();
         SimpleDateFormat dateFormatIn = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat dateFormatOut = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
-        Date date;
+        SimpleDateFormat dateFormatOut = new SimpleDateFormat("MMM dd', yyyy");
         
-        String dateString = new String();
         try {
-            dateString = reader.readLine();
-        } catch (Exception e) {
-            System.out.println(e.getClass().getSimpleName());
-        } finally {
-            reader.close();
+            Date date = dateFormatIn.parse(s);
+        } catch (ParseException pe) {
+            System.out.println(pe.getClass().getSimpleName());
         }
         
-        if (dateString != null)
-            try {
-                date = dateFormatIn.parse(dateString);
-                dateString = dateFormatOut.format(date);
-                System.out.println(dateString.toUpperCase());
-            } catch (Exception e) {
-                System.out.println(e.getClass().getSimpleName());
-            }
+        
     }
 }
