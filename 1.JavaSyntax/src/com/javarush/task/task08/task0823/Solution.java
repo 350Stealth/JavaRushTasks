@@ -3,8 +3,6 @@ package com.javarush.task.task08.task0823;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
 
 /* 
 Омовение Рамы
@@ -15,29 +13,31 @@ public class Solution {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String string = reader.readLine();
         
+        String n_space = " ",
+            result = "";
+        
+        boolean flag = true;
+        
+        Character[] characters = new Character[string.length()];
+        
+        for (int i = 0; i < string.length(); i++) {
+            characters[i] = string.toCharArray()[i];
+        }
+        
+        for (int i = 0; i < characters.length; i++) {
+            if (flag) {
+                characters[i] = Character.toUpperCase(characters[i]);
+                flag = false;
+            }
+            if (characters[i].toString().equals(n_space) && (i < characters.length - 1)) {
+                characters[i + 1] = Character.toUpperCase(characters[i + 1]);
+            }
+            result = result + characters[i];
+        }
+        
+        System.out.println(result);
+        
         //напишите тут ваш код
-        char[] chars = string.toCharArray();
-        Set<Integer> spaces = new HashSet<>();
         
-        int indexOfSpace = 0;
-        
-        while (string.indexOf(" ", indexOfSpace) != string.lastIndexOf(" ")) {
-            spaces.add(string.indexOf(" ", indexOfSpace));
-            indexOfSpace = string.indexOf(" ", indexOfSpace+1);
-        }
-        
-        spaces.add(string.lastIndexOf(" "));
-        String upperCaseChar = new String();
-        String result = new String();
-        
-        for (int indexOS : spaces
-        ) {
-            upperCaseChar = string.substring(indexOS + 1, indexOS + 2);
-            upperCaseChar = upperCaseChar.toUpperCase();
-            result = string.substring(0, indexOS) + upperCaseChar + string.substring(indexOS + 2, string.length());
-            string.replaceAll(string, result);
-        }
-    
-        System.out.println(string);
     }
 }
