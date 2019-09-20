@@ -16,6 +16,13 @@ public class Solution {
     
     static {
         //add your code here - добавьте код тут
+        reset();
+    }
+
+    public static CanFly result;
+
+    public static void reset() {
+        //add your code here - добавьте код тут
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         String vehicle = scanner.nextLine();
         if (vehicle.equals("helicopter")) {
@@ -24,12 +31,5 @@ public class Solution {
             int passCount = scanner.nextInt();
             result = new Plane(passCount);
         }
-        reset();
-    }
-
-    public static CanFly result;
-
-    public static void reset() {
-        //add your code here - добавьте код тут
     }
 }
