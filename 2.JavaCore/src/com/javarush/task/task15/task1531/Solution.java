@@ -21,6 +21,11 @@ public class Solution {
 
     public static String factorial(int n) {
         //add your code here
+        if (n == 1 || n == 0) {
+            return "1";
+        } else {
+            String s =
+        }
 
         return "";
     }
