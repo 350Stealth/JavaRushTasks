@@ -10,29 +10,26 @@ import java.math.BigDecimal;
 */
 
 public class Solution {
-    static BigDecimal bigNum;
-    
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-//        int input = Integer.parseInt(reader.readLine());
+        int input = Integer.parseInt(reader.readLine());
         reader.close();
         
-        int input = 25;
-        String factor = factorial(input);
-        
-//        System.out.println(factorial(input));
-        System.out.println(factor);
+        if (input >= 0 && input <= 150) {
+            System.out.println(factorial(input));
+        } else if (input < 0) {
+            System.out.println(0);
+        }
     }
 
     public static String factorial(int n) {
         //add your code here
         String s;
-//        BigDecimal bigNum = new BigDecimal(n);
+        BigDecimal bigNum = new BigDecimal(n);
         if (n == 1 || n == 0) {
             return "1";
         } else {
-//            int num = Integer.parseInt(factorial(n-1)) * n;
             bigNum = bigNum.multiply(new BigDecimal(factorial(n-1)));
             s = bigNum.toString();
         }
