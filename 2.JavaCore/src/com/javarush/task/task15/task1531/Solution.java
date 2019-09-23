@@ -10,23 +10,33 @@ import java.math.BigDecimal;
 */
 
 public class Solution {
+    static BigDecimal bigNum;
+    
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int input = Integer.parseInt(reader.readLine());
+//        int input = Integer.parseInt(reader.readLine());
         reader.close();
-
-        System.out.println(factorial(input));
+        
+        int input = 25;
+        String factor = factorial(input);
+        
+//        System.out.println(factorial(input));
+        System.out.println(factor);
     }
 
     public static String factorial(int n) {
         //add your code here
+        String s;
+//        BigDecimal bigNum = new BigDecimal(n);
         if (n == 1 || n == 0) {
             return "1";
         } else {
-            String s =
+//            int num = Integer.parseInt(factorial(n-1)) * n;
+            bigNum = bigNum.multiply(new BigDecimal(factorial(n-1)));
+            s = bigNum.toString();
         }
 
-        return "";
+        return s;
     }
 }
