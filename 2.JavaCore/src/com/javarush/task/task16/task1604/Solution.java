@@ -20,7 +20,11 @@ public class Solution {
     
         @Override
         public void run() {
-            StackTraceElement element =
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            for (StackTraceElement element: elements
+                 ){
+                System.out.println(element);
+            }
         }
     }
 }
