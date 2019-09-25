@@ -1,4 +1,4 @@
-﻿package com.javarush.task.task16.task1606;
+package com.javarush.task.task16.task1606;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Solution {
         PrintListThread firstThread = new PrintListThread("firstThread");
         PrintListThread secondThread = new PrintListThread("secondThread");
         firstThread.start();
-        secondThread.join();
+        firstThread.join();
         secondThread.start();
     }
 
