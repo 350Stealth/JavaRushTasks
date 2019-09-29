@@ -8,6 +8,8 @@ public class Solution {
     public static void main(String[] args) throws InterruptedException {
         //Add your code here - добавь код тут
         Thread thread = new TestThread();
+        thread.start();
+        thread.interrupt();
         
     }
 
