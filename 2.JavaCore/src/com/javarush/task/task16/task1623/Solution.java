@@ -17,5 +17,17 @@ public class Solution {
             super(Integer.toString(++createdThreadCount));
             this.start();
         }
+    
+        @Override
+        public void run() {
+            while (Thread.activeCount() < Solution.count) {
+                System.out.println(new GenerateThread());
+            }
+        }
+    
+        @Override
+        public String toString() {
+            return "" + this.getName() + " created";
+        }
     }
 }
