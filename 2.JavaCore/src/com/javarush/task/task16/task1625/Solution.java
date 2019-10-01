@@ -10,7 +10,9 @@ public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
         t1.start();
+        t1.interrupt();
         t2.start();
+        t1.interrupt();
     }
 
     public static class T1 extends Thread {
