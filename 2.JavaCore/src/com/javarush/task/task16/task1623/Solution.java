@@ -20,9 +20,14 @@ public class Solution {
     
         @Override
         public void run() {
-            while (Thread.activeCount() < Solution.count) {
+            if (Solution.createdThreadCount < Solution.count) {
                 System.out.println(new GenerateThread());
             }
+//            try {
+//                Thread.currentThread().sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
     
         @Override
