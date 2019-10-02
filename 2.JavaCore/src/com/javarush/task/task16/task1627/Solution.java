@@ -50,18 +50,20 @@ public class Solution {
         public void run() {
             //Add your code here - добавь код тут
             for (int i = 0; i < OnlineGame.steps.size(); i++) {
-                if (OnlineGame.isWinnerFound) {
-                    System.out.println(Thread.currentThread().getName() + ":проиграл");
+                /*if (Thread.currentThread().isInterrupted()) {
+                    System.out.println(getName() + ":проиграл");
                     return;
-                }
-                System.out.println(Thread.currentThread().getName() + ":" + OnlineGame.steps.get(i));
+                }*/
+                System.out.println(getName() + ":" + OnlineGame.steps.get(i));
                 try {
                     Thread.currentThread().sleep(1000/rating);
                 } catch (InterruptedException e) {
 //                    e.printStackTrace();
+                    System.out.println(getName() + ":проиграл");
+                    return;
                 }
-                if (i == OnlineGame.steps.size() - 1) {
-                    System.out.println(Thread.currentThread().getName() + ":победитель!");
+                if (i == OnlineGame.steps.size() - 1 && !OnlineGame.isWinnerFound) {
+                    System.out.println(getName() + ":победитель!");
                     OnlineGame.isWinnerFound = true;
                 }
             }
