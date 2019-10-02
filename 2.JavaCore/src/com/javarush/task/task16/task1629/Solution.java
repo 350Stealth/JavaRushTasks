@@ -12,13 +12,37 @@ public class Solution {
         Read3Strings t2 = new Read3Strings();
 
         //add your code here - добавьте код тут
+        t1.start();
+        t1.join();
+        t2.start();
+        t2.join();
 
         t1.printResult();
         t2.printResult();
     }
 
     //add your code here - добавьте код тут
-    public class Read3Strings extends Thread{
+    public static class Read3Strings extends Thread{
+        String s = "";
     
+        public Read3Strings() {
+//            this.start();
+        }
+    
+        @Override
+        public void run() {
+            try {
+                for (int i = 0; i < 3; i++) {
+                    s = s + " " + reader.readLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            s = s.trim();
+        }
+        
+        public void printResult() {
+            System.out.println(s);
+        }
     }
 }
