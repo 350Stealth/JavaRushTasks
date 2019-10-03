@@ -1,15 +1,21 @@
 package com.javarush.task.task16.task1630;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Solution {
     public static String firstFileName;
     public static String secondFileName;
 
     //add your code here - добавьте код тут
+    static {
+        Scanner scanner = new Scanner(System.in);
+        firstFileName = scanner.nextLine();
+        secondFileName = scanner.nextLine();
+        scanner.close();
+    }
 
     public static void main(String[] args) throws InterruptedException {
         systemOutPrintln(firstFileName);
@@ -24,7 +30,7 @@ public class Solution {
         System.out.println(f.getFileContent());
     }
 
-    public interface ReadFileInterface {
+    public interface ReadFileInterface extends Runnable{
 
         void setFileName(String fullFileName);
 
@@ -36,4 +42,44 @@ public class Solution {
     }
 
     //add your code here - добавьте код тут
+    public static class ReadFileThread implements ReadFileInterface {
+        List<String> stringList = new ArrayList<>();
+        String fileName = "";
+        
+        @Override
+        public void setFileName(String fullFileName) {
+            fileName = fullFileName;
+        }
+    
+        @Override
+        public String getFileContent() {
+            String fileContent ="";
+            for (String s: stringList
+                 ) {
+                fileContent += (s + " ");
+            }
+            return fileContent.trim();
+        }
+    
+        @Override
+        public void join() throws InterruptedException {
+        
+        }
+    
+        @Override
+        public void start() {
+        }
+    
+        @Override
+        public void run() {
+            try {
+                Scanner scanner = new Scanner(new FileReader(fileName));
+                while (scanner.hasNext()) {
+                    stringList.add(scanner.nextLine());
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
