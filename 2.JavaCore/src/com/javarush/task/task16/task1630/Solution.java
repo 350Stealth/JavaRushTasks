@@ -27,6 +27,7 @@ public class Solution {
         f.setFileName(fileName);
         f.start();
         //add your code here - добавьте код тут
+        f.join();
         System.out.println(f.getFileContent());
     }
 
@@ -42,7 +43,7 @@ public class Solution {
     }
 
     //add your code here - добавьте код тут
-    public static class ReadFileThread implements ReadFileInterface {
+    public static class ReadFileThread extends Thread implements ReadFileInterface {
         List<String> stringList = new ArrayList<>();
         String fileName = "";
         
@@ -61,13 +62,14 @@ public class Solution {
             return fileContent.trim();
         }
     
-        @Override
+        /*@Override
         public void join() throws InterruptedException {
         
-        }
+        }*/
     
         @Override
         public void start() {
+            this.run();
         }
     
         @Override
