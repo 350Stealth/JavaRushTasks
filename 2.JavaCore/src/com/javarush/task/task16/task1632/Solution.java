@@ -57,11 +57,13 @@ public class Solution {
     }
     
     public static class Thread4 extends Thread implements Message {
+        boolean flag = true;
+        
         @Override
         public void run() {
             super.run();
             try {
-                while (true) {
+                while (flag) {
                     sleep(0);
                 }
             } catch (InterruptedException e) {
@@ -71,7 +73,8 @@ public class Solution {
         
         @Override
         public void showWarning() {
-            Thread.interrupted();
+//            this.interrupted();
+            flag = false;
         }
     }
     
