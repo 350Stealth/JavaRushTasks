@@ -7,7 +7,9 @@ public class Solution {
         TestedThread commonThread = new TestedThread(handler);
 
         Thread threadA = new Thread(commonThread, "Нить 1");
+        threadA.setUncaughtExceptionHandler(handler);
         Thread threadB = new Thread(commonThread, "Нить 2");
+        threadB.setUncaughtExceptionHandler(handler);
 
         threadA.start();
         threadB.start();
