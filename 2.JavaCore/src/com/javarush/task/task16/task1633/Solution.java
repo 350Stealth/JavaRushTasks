@@ -7,9 +7,9 @@ public class Solution {
         TestedThread commonThread = new TestedThread(handler);
 
         Thread threadA = new Thread(commonThread, "Нить 1");
-        threadA.setUncaughtExceptionHandler(handler);
+//        threadA.setUncaughtExceptionHandler(handler);
         Thread threadB = new Thread(commonThread, "Нить 2");
-        threadB.setUncaughtExceptionHandler(handler);
+//        threadB.setUncaughtExceptionHandler(handler);
 
         threadA.start();
         threadB.start();
@@ -20,7 +20,8 @@ public class Solution {
 
     public static class TestedThread extends Thread {
         public TestedThread(Thread.UncaughtExceptionHandler handler) {
-            setUncaughtExceptionHandler(handler);
+//            setUncaughtExceptionHandler(handler);
+            setDefaultUncaughtExceptionHandler(handler);
             start();
         }
 
