@@ -32,4 +32,21 @@ public class Solution {
             }
         }
     }
+    
+    public static class NoteThread extends Thread{
+        @Override
+        public void run() {
+            String sLine;
+            try {
+            for (int i = 0; i < 1000; i++) {
+                sLine = getName() + "-Note" + i;
+                Note.addNote(sLine);
+                Thread.sleep(1);
+                Note.removeNote(getName());
+                }
+            }catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
