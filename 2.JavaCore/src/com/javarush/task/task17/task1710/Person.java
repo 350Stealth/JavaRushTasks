@@ -47,6 +47,8 @@ public class Person {
     
     @Override
     public String toString() {
-        return name + sex + birthDate;
+        String s;
+        s = name + (sex == Sex.MALE ? " м " : " ж ") + birthDate.toString();
+        return s;
     }
 }

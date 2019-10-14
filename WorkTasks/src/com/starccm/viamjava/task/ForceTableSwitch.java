@@ -1,4 +1,4 @@
-package com.starccm.viamjava.task;
+package src.com.starccm.viamjava.task;
 
 import java.io.*;
 import java.util.Scanner;
@@ -35,19 +35,24 @@ public class ForceTableSwitch {
             String line;
             String[] strings;
             String X, Y, Z, Pa;
+            int counter = 5;
             
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 
-                strings = line.split(COMMA);
-                Pa = strings[0];
-                X = strings[1];
-                Y = strings[2];
-                Z = strings[3];
-                line = X + COMMA + Y + COMMA + Z + COMMA + Pa;
-                
-                writer.write(line);
-                writer.newLine();
+                if (counter == 5) {
+                    strings = line.split(COMMA);
+                    Pa = strings[0];
+                    X = strings[1];
+                    Y = strings[2];
+                    Z = strings[3];
+                    line = X + COMMA + Y + COMMA + Z + COMMA + Pa;
+    
+                    writer.write(line);
+                    writer.newLine();
+                    counter = 0;
+                } else
+                    counter++;
             }
             
             writer.close();
