@@ -21,18 +21,18 @@ public class Solution {
     
     public static void main(String[] args) {
         //start here - начни тут
-        /*if (args.length == 0) {
+        if (args.length == 0) {
             System.out.println("There are no params"); // should be delete
             return;
-        }*/
-        SimpleDateFormat dateIn = new SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH);
+        }
+        SimpleDateFormat dateIn = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Person person;
 //        SimpleDateFormat dateOut = new SimpleDateFormat("dd-MMM-YYYY", Locale.ENGLISH);
-        args = new String[5];
+//        args = new String[5];
 //        args[0] = "-i"; args[1] = "1";
 //        args[0] = "-d"; args[1] = "1";
 //        args[0] = "-u"; args[1] = "1"; args[2] = "Djon Snow"; args[3] = "м"; args[4] = "15/04/1990";
-        args[0] = "-c"; args[1] = "Djon Snow"; args[2] = "ж"; args[3] = "15/04/1990";
+//        args[0] = "-c"; args[1] = "Djon Snow"; args[2] = "ж"; args[3] = "15/04/1990";
         switch (args[0]) {
             case "-c":
                 //create
@@ -42,13 +42,13 @@ public class Solution {
                             person = Person.createMale(args[1], dateIn.parse(args[3]));
                             allPeople.add(person);
                             System.out.println(allPeople.indexOf(person));
-                            System.out.println(allPeople.get(allPeople.indexOf(person)));
+//                            System.out.println(allPeople.get(allPeople.indexOf(person)));
                             break;
                         case "ж":
                             person = Person.createFemale(args[1], dateIn.parse(args[3]));
                             allPeople.add(person);
                             System.out.println(allPeople.indexOf(person));
-                            System.out.println(allPeople.get(allPeople.indexOf(person)));
+//                            System.out.println(allPeople.get(allPeople.indexOf(person)));
                             break;
                     }
                 } catch (ParseException e) {
