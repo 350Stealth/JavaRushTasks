@@ -39,68 +39,72 @@ public class Solution {
         switch (args[0]) {
             case "-c":
                 // create
-                for (int i = 1; i < args.length; i+=3) {
-                    try {
-                        switch (args[i + 1]) {
-                            case "м":
-                                person = Person.createMale(args[i], dateIn.parse(args[i + 2]));
-                                allPeople.add(person);
-                                System.out.println(allPeople.indexOf(person));
+                synchronized (allPeople) {
+                    for (int i = 1; i < args.length; i += 3) {
+                        try {
+                            switch (args[i + 1]) {
+                                case "м":
+                                    person = Person.createMale(args[i], dateIn.parse(args[i + 2]));
+                                    allPeople.add(person);
+                                    System.out.println(allPeople.indexOf(person));
 //                            System.out.println(allPeople.get(allPeople.indexOf(person)));
-                                break;
-                            case "ж":
-                                person = Person.createFemale(args[i], dateIn.parse(args[i + 2]));
-                                allPeople.add(person);
-                                System.out.println(allPeople.indexOf(person));
+                                    break;
+                                case "ж":
+                                    person = Person.createFemale(args[i], dateIn.parse(args[i + 2]));
+                                    allPeople.add(person);
+                                    System.out.println(allPeople.indexOf(person));
 //                            System.out.println(allPeople.get(allPeople.indexOf(person)));
-                                break;
+                                    break;
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
                         }
-                    } catch (ParseException e) {
-                        e.printStackTrace();
                     }
                 }
-               /* for (Person newPerson: allPeople
-                     ) {
-                    System.out.println(newPerson.toString());
-                }*/
                 break;
             case "-u":
                 // update
-                for (int i = 1; i < args.length; i += 4) {
-                    index = Integer.parseInt(args[i]);
-                    try {
+                synchronized (allPeople) {
+                    for (int i = 1; i < args.length; i += 4) {
+                        index = Integer.parseInt(args[i]);
+                        try {
 //                        int i = Integer.parseInt(args[1]);
-                        allPeople.get(index).setName(args[i + 1]);
-                        switch (args[i + 2]) {
-                            case "м":
-                                allPeople.get(index).setSex(Sex.MALE);
-                                break;
-                            case "ж":
-                                allPeople.get(index).setSex(Sex.FEMALE);
-                                break;
+                            allPeople.get(index).setName(args[i + 1]);
+                            switch (args[i + 2]) {
+                                case "м":
+                                    allPeople.get(index).setSex(Sex.MALE);
+                                    break;
+                                case "ж":
+                                    allPeople.get(index).setSex(Sex.FEMALE);
+                                    break;
+                            }
+                            allPeople.get(index).setBirthDate(dateIn.parse(args[i + 3]));
+                            System.out.println(index);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
                         }
-                        allPeople.get(index).setBirthDate(dateIn.parse(args[i + 3]));
-                        System.out.println(index);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
                     }
                 }
                 break;
             case "-d":
                 // delete
-                for (int i = 1; i < args.length; i++) {
-                    index = Integer.parseInt(args[i]);
-                    allPeople.get(index).setName(null);
-                    allPeople.get(index).setBirthDate(null);
-                    allPeople.get(index).setSex(null);
-                    System.out.println(index);
+                synchronized (allPeople) {
+                    for (int i = 1; i < args.length; i++) {
+                        index = Integer.parseInt(args[i]);
+                        allPeople.get(index).setName(null);
+                        allPeople.get(index).setBirthDate(null);
+                        allPeople.get(index).setSex(null);
+                        System.out.println(index);
+                    }
                 }
                 break;
             case "-i":
                 // info
-                for (int i = 1; i < args.length; i++) {
-                    index = Integer.parseInt(args[i]);
-                    System.out.println(allPeople.get(index).toString());
+                synchronized (allPeople) {
+                    for (int i = 1; i < args.length; i++) {
+                        index = Integer.parseInt(args[i]);
+                        System.out.println(allPeople.get(index).toString());
+                    }
                 }
                 break;
         }
