@@ -2,11 +2,11 @@ package com.javarush.task.task17.task1712;
 
 public class Waiter implements Runnable {
     public boolean continueWorking = true;
-
+    
     @Override
     public void run() {
         Manager manager = Manager.getInstance();
-
+        
         while (continueWorking || !manager.getDishesQueue().isEmpty()) {
             if (!manager.getDishesQueue().isEmpty()) {       //относим готовый заказ
                 Dishes dishes = manager.getDishesQueue().poll();
