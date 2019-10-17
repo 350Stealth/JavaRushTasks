@@ -6,7 +6,7 @@ import java.util.*;
 Общий список
 */
 
-public class Solution implements List {
+public class Solution implements List<Long> {
     private ArrayList<Long> original = new ArrayList<Long>();
 
     public static void main(String[] args) {
@@ -44,8 +44,8 @@ public class Solution implements List {
     }
     
     @Override
-    public synchronized boolean add(Object o) {
-        return original.add((Long) o);
+    public synchronized boolean add(Long o) {
+        return original.add(o);
     }
     
     @Override
@@ -70,61 +70,61 @@ public class Solution implements List {
     
     @Override
     public synchronized boolean removeAll(Collection c) {
-        return false;
+        return /*false*/ original.removeAll(c);
     }
     
     @Override
     public synchronized boolean retainAll(Collection c) {
-        return false;
+        return /*false*/ original.retainAll(c);
     }
     
     @Override
     public synchronized void clear() {
-    
+        original.clear();
     }
     
     @Override
-    public synchronized Object get(int index) {
-        return null;
+    public synchronized Long get(int index) {
+        return /*null*/ original.get(index);
     }
     
     @Override
-    public synchronized Object set(int index, Object element) {
-        return null;
+    public synchronized Long set(int index, Long element) {
+        return /*null*/ original.set(index, element);
     }
     
     @Override
-    public synchronized void add(int index, Object element) {
-    
+    public synchronized void add(int index, Long element) {
+        original.add(index, element);
     }
     
     @Override
-    public synchronized Object remove(int index) {
-        return null;
+    public synchronized Long remove(int index) {
+        return /*null*/ original.remove(index);
     }
     
     @Override
     public synchronized int indexOf(Object o) {
-        return 0;
+        return original.indexOf(o);
     }
     
     @Override
     public synchronized int lastIndexOf(Object o) {
-        return 0;
+        return original.lastIndexOf(o);
     }
     
     @Override
     public synchronized ListIterator listIterator() {
-        return null;
+        return /*null*/ original.listIterator();
     }
     
     @Override
     public synchronized ListIterator listIterator(int index) {
-        return null;
+        return /*null*/ original.listIterator(index);
     }
     
     @Override
     public synchronized List subList(int fromIndex, int toIndex) {
-        return null;
+        return /*null*/ original.subList(fromIndex, toIndex);
     }
 }
