@@ -35,15 +35,22 @@ public class Solution {
             e.printStackTrace();
         }
         
-        joinData();
+        Solution solution = new Solution();
+        solution.joinData();
     }
     
-    public static void joinData() throws CorruptedDataException {
+    public void joinData() throws CorruptedDataException {
         
         if (allLines.containsAll(forRemoveLines)) {
             allLines.removeAll(forRemoveLines);
+            /*for (String line: allLines
+            ) {
+                System.out.println(line);
+            }*/
         } else {
             allLines.clear();
+//            System.out.println("CorruptedDataException");
+//            System.out.println(allLines.size());
             throw new CorruptedDataException();
         }
         /*for (String line : forRemoveLines
