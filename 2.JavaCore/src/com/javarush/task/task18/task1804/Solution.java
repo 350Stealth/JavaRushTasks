@@ -1,4 +1,4 @@
-package com.javarush.task.task18.task1803;
+package com.javarush.task.task18.task1804;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /* 
-Самые частые байты
+Самые редкие байты
 */
 
 public class Solution {
@@ -17,7 +17,7 @@ public class Solution {
         
         FileInputStream stream = new FileInputStream(fileName);
         Map<Integer, Integer> bites = new HashMap<>();
-        int buff = 0;
+        int buff;
         while (stream.available() > 0) {
             buff = stream.read();
             if (bites.containsKey(buff)) {
@@ -28,15 +28,24 @@ public class Solution {
             }
         }
         stream.close();
-        int max = 0;
+        
+        int min = 0;
         for (Map.Entry<Integer, Integer> item : bites.entrySet()
         ) {
-            if (max < item.getValue())
-                max = item.getValue();
+            if (min == 0) {
+                min = item.getValue();
+                continue;
+            }
+            if (min > item.getValue()) {
+                min = item.getValue();
+            }
         }
+    
+//        System.out.println(min); //should be delete
+        
         for (Map.Entry<Integer, Integer> item : bites.entrySet()
         ) {
-            if (item.getValue() == max) {
+            if (item.getValue() == min) {
                 System.out.print(item.getKey() + " ");
             }
         }
