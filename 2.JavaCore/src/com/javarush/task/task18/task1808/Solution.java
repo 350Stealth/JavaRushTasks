@@ -17,28 +17,24 @@ public class Solution {
         scanner.close();
         
         FileInputStream inputStream = new FileInputStream(fileInput);
-        FileOutputStream outputStream = new FileOutputStream(fileOutput1);
+        FileOutputStream outputStream1 = new FileOutputStream(fileOutput1);
+        FileOutputStream outputStream2 = new FileOutputStream(fileOutput2);
         
         if (inputStream.available() > 0) {
-            System.out.println(inputStream.available()); //for delete
             
-            int len = inputStream.available()/2;
+            int len = inputStream.available() / 2;
+            len = inputStream.available() / 2.0 > len ? len + 1 : len;
             byte[] buffer = new byte[len];
             int count = inputStream.read(buffer);
-            System.out.println(count); //for delete
             
-            outputStream.write(buffer, 0, count);
-            outputStream.close();
-            outputStream = new FileOutputStream(fileOutput2);
+            outputStream1.write(buffer, 0, count);
             buffer = new byte[inputStream.available()];
             count = inputStream.read(buffer);
-            System.out.println(count); //for delete
             
-            outputStream.write(buffer, 0, count);
-            outputStream.close();
-            inputStream.close();
+            outputStream2.write(buffer, 0, count);
         }
-
-//        System.out.println(15/2);
+        inputStream.close();
+        outputStream1.close();
+        outputStream2.close();
     }
 }
