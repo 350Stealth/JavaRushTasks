@@ -5,6 +5,7 @@ package com.javarush.task.task18.task1821;
 */
 
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -23,5 +24,6 @@ public class Solution {
             Byte character = scanner.nextByte();
             
         }
+        FileReader reader = new FileReader(args[0]);
     }
 }
