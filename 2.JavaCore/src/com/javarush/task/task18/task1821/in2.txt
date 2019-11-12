@@ -1,0 +1,30 @@
+Specifying the Exported Fields
+Specify the data that Simcenter STAR-CCM+ exports to Simcenter Amesim. As Simcenter Amesim is a 1D code, Simcenter STAR-CCM+ must send single-value fields to the Simcenter Amesim ports.
+In this tutorial, you create reports to calculate the mass flow at the pipe outlet and the force acting on the plate, and export them to Simcenter Amesim ports 1 and 2, respectively.
+To create the reports:
+1. Right-click the Reports node and select New Report > Mass Flow.
+2. Select the Mass Flow 1 node and set Parts to Regions > Pipe > Outlet.
+3. In a similar way, create a report of type Force and set its Parts to Regions > Plate > Plate.
+Add the reports to the exported fields:
+4. Expand the Co-Simulations > Link 1 node.
+5. Right-click the Conditions > Exported Fields node and select Add Auxiliary Field > Scalar.
+6. Rename the Exported Fields > Scalar Auxiliary Field 1 node to MassFlow and set Scalar Function to Reports > Report: Mass Flow 1.
+7. In a similar way, add another scalar auxiliary field named Force and set its Scalar Function property to Reports > Report: Force 1.
+Make sure that each exported field is associated with the correct Simcenter Amesim port:
+8. Expand the Link 1 > Conditions > Simcenter Amesim Port Associations node and set the following properties:
+Node
+	
+Property
+	
+Setting
+MassFlow
+	
+Associated ID
+	
+1
+Force
+	
+Associated ID
+	
+2
+9. Save the simulation.

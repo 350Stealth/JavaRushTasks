@@ -6,46 +6,31 @@ package com.javarush.task.task18.task1821;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Solution {
     
     public static void main(String[] args) throws Exception {
         
-        // for deleting
-//        args = new String[]{"e:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task18\\task1821\\in.txt"};
-//        args = new String[]{"/home/stealth/IdeaProjects/JavaRushTasks/2.JavaCore/src/com/javarush/task/task18/task1821/in.txt"};
-//        args = new String[]{"d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task18\\task1821\\in.txt"};
-        //////////////////////
-        
         FileReader reader = new FileReader(args[0]);
         BufferedReader bufferedReader = new BufferedReader(reader);
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new TreeMap<>();
         int buff = bufferedReader.read();
         while (buff != -1) {
-            if (!Character.isWhitespace(buff)) {
-                if (map.containsKey(buff)) {
-                    int count = map.get(buff);
-                    count++;
-                    map.put(buff, count);
-                } else {
-                    map.put(buff, 1);
-                }
+            Integer count = map.putIfAbsent(buff, 1);
+            if (count != null) {
+                count++;
+                map.put(buff, count);
             }
             buff = bufferedReader.read();
         }
         bufferedReader.close();
         reader.close();
         
-        Integer[] sortKyes = new Integer[map.size()];
-        map.keySet().toArray(sortKyes);
-        Arrays.sort(sortKyes);
-        
-        for (int i = 0; i < sortKyes.length; i++) {
-            System.out.printf("'%c' %d",Character.toChars(sortKyes[i])[0], map.get(sortKyes[i]));
-            System.out.println();
+        for (Map.Entry<Integer, Integer> item : map.entrySet()
+        ) {
+            System.out.println(Character.toChars(item.getKey())[0] + " " + item.getValue());
         }
     }
 }
