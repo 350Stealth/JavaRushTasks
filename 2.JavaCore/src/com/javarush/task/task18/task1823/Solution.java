@@ -20,12 +20,12 @@ public class Solution {
             threadArrayList.get(last - 1).start();
             name = scanner.nextLine();
         }
-        ////
+        /*////
         for (Map.Entry<String, Integer> item : resultMap.entrySet()
         ) {
             System.out.println(item.getKey() + " - " + item.getValue());
         }
-        ////
+        ////*/
     }
     
     public static class ReadThread extends Thread {
@@ -42,9 +42,12 @@ public class Solution {
 //            super.run();
             try {
                 FileInputStream inputStream = new FileInputStream(fileName);
-                Scanner scanner = new Scanner(inputStream);
-                int maxByte = MaxByte(scanner);
-                scanner.close();
+//                Scanner scanner = new Scanner(inputStream);
+//                FileReader fileReader = new FileReader(fileName);
+//                BufferedReader reader = new BufferedReader(fileReader);
+                
+                int maxByte = MaxByte(inputStream);
+//                scanner.close();
                 inputStream.close();
                 synchronized (resultMap) {
                     resultMap.put(fileName, maxByte);
@@ -54,12 +57,12 @@ public class Solution {
             }
         }
         
-        private int MaxByte(Scanner scanner) {
+        private int MaxByte(FileInputStream scanner) throws Exception {
             Map<Integer, Integer> map = new TreeMap<>();
-            while (scanner.hasNextByte()) {
-                int buff = scanner.nextByte();
-                int count = map.putIfAbsent(buff, 1);
-                if (count != -1) {
+            while (scanner.available() > 0) {
+                Integer buff = scanner.read();
+                Integer count = map.putIfAbsent(buff, 1);
+                if (count != null) {
                     count++;
                     map.put(buff, count);
                 }
