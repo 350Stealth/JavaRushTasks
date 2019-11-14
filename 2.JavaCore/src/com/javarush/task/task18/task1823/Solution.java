@@ -1,8 +1,6 @@
 package com.javarush.task.task18.task1823;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.*;
 
 /* 
@@ -13,25 +11,50 @@ public class Solution {
     public static Map<String, Integer> resultMap = new HashMap<String, Integer>();
     
     public static void main(String[] args) {
-    
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<ReadThread> threadArrayList = new ArrayList<>();
+        String name = scanner.nextLine();
+        while (!name.equals("exit")) {
+            threadArrayList.add(new ReadThread(name));
+            int last = threadArrayList.size();
+            threadArrayList.get(last - 1).start();
+            name = scanner.nextLine();
+        }
+        ////
+        for (Map.Entry<String, Integer> item : resultMap.entrySet()
+        ) {
+            System.out.println(item.getKey() + " - " + item.getValue());
+        }
+        ////
     }
     
     public static class ReadThread extends Thread {
         String fileName;
         
-        public ReadThread(String fileName) throws Exception {
+        public ReadThread(String fileName) {
             //implement constructor body
-            
+            this.fileName = fileName;
         }
         // implement file reading here - реализуйте чтение из файла тут
         
         @Override
-        public void run() throws IOException{
+        public void run() {
 //            super.run();
-//            FileInputStream inputStream;
-            FileInputStream inputStream = new FileInputStream(fileName);
-            Scanner scanner = new Scanner(inputStream);
-//            BufferedReader reader = new BufferedReader(inputStream);
+            try {
+                FileInputStream inputStream = new FileInputStream(fileName);
+                Scanner scanner = new Scanner(inputStream);
+                int maxByte = MaxByte(scanner);
+                scanner.close();
+                inputStream.close();
+                synchronized (resultMap) {
+                    resultMap.put(fileName, maxByte);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        private int MaxByte(Scanner scanner) {
             Map<Integer, Integer> map = new TreeMap<>();
             while (scanner.hasNextByte()) {
                 int buff = scanner.nextByte();
@@ -41,8 +64,6 @@ public class Solution {
                     map.put(buff, count);
                 }
             }
-            scanner.close();
-            inputStream.close();
             int[] max = new int[]{0, 0};
             for (Map.Entry<Integer, Integer> item : map.entrySet()
             ) {
@@ -51,7 +72,7 @@ public class Solution {
                     max[1] = item.getValue();
                 }
             }
-            
+            return max[0];
         }
     }
 }
