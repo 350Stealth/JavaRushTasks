@@ -1,9 +1,9 @@
 package com.javarush.task.task18.task1825;
 
-import java.io.*;
-import java.util.Comparator;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.TreeSet;
 
 /* 
@@ -17,22 +17,22 @@ public class Solution {
         String name = scanner.nextLine();
         String baseName = name.substring(0, name.lastIndexOf("."));
         filesSet.add(name);
-        while (true) {
+        while (!name.equals("end")) {
             name = scanner.nextLine();
 //            String subString = name.substring(0, name.lastIndexOf("."));
             if (!name.contains(baseName)) {
-                break;
+                continue;
             }
             filesSet.add(name);
         }
         scanner.close();
         
         /////
-        for (String item : filesSet
+/*        for (String item : filesSet
         ) {
             System.out.println(item);
         }
-        System.out.println(baseName);
+        System.out.println(baseName);*/
         /////
         
         FileOutputStream outputStream = new FileOutputStream(baseName, true);
@@ -46,5 +46,6 @@ public class Solution {
             }
             inputStream.close();
         }
+        outputStream.close();
     }
 }
