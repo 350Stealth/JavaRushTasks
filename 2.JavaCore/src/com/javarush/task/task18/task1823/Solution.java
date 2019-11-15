@@ -2,11 +2,8 @@ package com.javarush.task.task18.task1823;
 
 import java.io.FileInputStream;
 import java.util.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
-/* 
+/*
 Нити и байты
 */
 
@@ -80,24 +77,5 @@ public class Solution {
             }
             return max[0];
         }
-
-  /*  public static void main(String[] args) {
-
-    }*/
-/*
-    public static class ReadThread extends Thread {
-        private FileInputStream inputStream;
-        
-        public ReadThread(String fileName) throws Exception{
-            //implement constructor body
-            inputStream = new FileInputStream(fileName);
-        }
-        // implement file reading here - реализуйте чтение из файла тут
-    
-        @Override
-        public void run() {
-//            super.run();
-            Scanner scanner = new Scanner(inputStream);
-        }*/
     }
 }
