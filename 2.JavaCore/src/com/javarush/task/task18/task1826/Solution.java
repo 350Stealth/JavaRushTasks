@@ -6,7 +6,6 @@ package com.javarush.task.task18.task1826;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) throws Exception {
@@ -16,9 +15,9 @@ public class Solution {
 //        args[0] = "-e /home/stealth/IdeaProjects/JavaRushTasks/2.JavaCore/src/com/javarush/task/task18/task1826/in.txt /home/stealth/IdeaProjects/JavaRushTasks/2.JavaCore/src/com/javarush/task/task18/task1826/out.txt";
 //        args[0] = "-d /home/stealth/IdeaProjects/JavaRushTasks/2.JavaCore/src/com/javarush/task/task18/task1826/out.txt /home/stealth/IdeaProjects/JavaRushTasks/2.JavaCore/src/com/javarush/task/task18/task1826/out2.txt";
         ////
-        
+
 //        System.out.println(args[0]); // for delete
-        
+
 //        Scanner scanner = new Scanner(args[0]);
         String key = args[0];//scanner.next();
         String fileIn = args[1];//scanner.next();
@@ -28,7 +27,7 @@ public class Solution {
 //        System.out.println(key);
 //        System.out.println(fileIn);
 //        System.out.println(fileOut);
-        
+
 //        scanner.close();
         
         FileInputStream inputStream = new FileInputStream(fileIn);
