@@ -1,7 +1,7 @@
-package com.javarush.task.task18.task1827;
+package com.javarush.task.task18.task1828;
 
 /* 
-Прайсы
+Прайсы 2
 */
 
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Solution {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
         
         /*////
         args = new String[4];
