@@ -9,6 +9,12 @@ import java.util.Map;
 
 public class Solution {
     public static Map<String, String> countries = new HashMap<String, String>();
+    
+    static {
+        countries.put("RU", "Russia");
+        countries.put("UA", "Ukraine");
+        countries.put("CA", "Canada");
+    }
 
     public static void main(String[] args) {
 
@@ -28,7 +34,7 @@ public class Solution {
     
         @Override
         public String getCountryName() {
-            return null;
+            return countries.get(incomeData.getCountryCode());
         }
     
         @Override
@@ -39,12 +45,14 @@ public class Solution {
         @Override
         public String getPhoneNumber() {
             String phoneCode = String.valueOf(incomeData.getCountryPhoneCode());
-            String phoneGSMCode = String.valueOf(incomeData.getPhoneNumber()).substring(0, 3);
-            String line = String.format("+%d(%s)%s", incomeData.getCountryPhoneCode(), phoneCode);
-            return null;
+            String phoneNumber = String.valueOf(incomeData.getPhoneNumber());
+            String phoneGSMCode = phoneNumber.substring(0, 2);
+            String numGroup1 = phoneNumber.substring(2, 5);
+            String numGroup2 = phoneNumber.substring(5, 7);
+            String numGroup3 = phoneNumber.substring(7);
+            return String.format("+%s(0%s)%s-%s-%s", phoneCode, phoneGSMCode, numGroup1, numGroup2, numGroup3);
         }
     }
-
 
     public static interface IncomeData {
         String getCountryCode();        //For example: UA
