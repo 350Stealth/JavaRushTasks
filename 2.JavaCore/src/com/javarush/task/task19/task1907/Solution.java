@@ -21,8 +21,9 @@ public class Solution {
         int count = 0;
         while (scanner.hasNext()) {
             line = scanner.next();
-            if (line.matches("")) {
+            if (line.matches("[^[0-9A-z]]?[Ww]orld[^[0-9A-z]]?")) { //"[^[0-9A-z]]?[Ww]orld[^[0-9A-z]]?" ".*[Ww]orld.*" "(\\b|^)[Ww]orld(\\b|$)"
                 count++;
+//                System.out.println(line);
             }
         }
         scanner.close();
