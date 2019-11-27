@@ -21,11 +21,12 @@ public class Solution {
         int count = 0;
         while (scanner.hasNext()) {
             line = scanner.next();
-            if (line.matches("(\\W?[Ww]orld\\W?)|(\\W?[Ww]orld\\W.*)")) { //"[^[0-9A-z]]?[Ww]orld[^[0-9A-z]]?" ".*[Ww]orld.*" "(\\b|^)[Ww]orld(\\b|$)"
+            if (line.matches(".*\\bworld\\b.*")) { //"[^[0-9A-z]]?[Ww]orld[^[0-9A-z]]?" ".*[Ww]orld.*" "(\\b|^)[Ww]orld(\\b|$)"
+                // (\W?[Ww]orld\W?)|(\W?[Ww]orld\W.*)
                 count++;
-//                System.out.println("+ " + line);
+                System.out.println("+ " + line);
             } else {
-//                System.out.println(line);
+                System.out.println(line);
             }
         }
         scanner.close();
