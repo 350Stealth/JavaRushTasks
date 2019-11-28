@@ -20,7 +20,7 @@ public class Solution {
         Scanner scanner = new Scanner(fileReader);
         String line;
         int count = 0;
-        String pattern = ".*\\bworld\\b.*";
+        String pattern = "\\bworld\\b";
         /*  while (scanner.hasNext()) {
             line = scanner.next();
             if (line.matches(".*\\bworld\\b.*")) { //"[^[0-9A-z]]?[Ww]orld[^[0-9A-z]]?" ".*[Ww]orld.*" "(\\b|^)[Ww]orld(\\b|$)"
@@ -34,14 +34,14 @@ public class Solution {
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
             
-            System.out.println(line);
+//            System.out.println(line);
             
-            while (line.matches(pattern)) {
+            while (line.matches(String.format(".*%s.*", pattern))) {
                 count++;
                 line = line.replaceFirst(pattern, "");
             }
     
-            System.out.println(line);
+//            System.out.println(line);
         }
         scanner.close();
         fileReader.close();
