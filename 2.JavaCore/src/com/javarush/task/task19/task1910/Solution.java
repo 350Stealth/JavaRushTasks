@@ -26,7 +26,7 @@ public class Solution {
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         while (bufferedReader.ready()) {
             String buffer = bufferedReader.readLine();
-            buffer = buffer.replaceAll("[^(\\w|\\s)]", "") + " ";
+            buffer = buffer.replaceAll("\\p{Punct}", "") + " "; //"[^(\\w|\\s)]"
 //            System.out.println(buffer);
             bufferedWriter.write(buffer);
         }
