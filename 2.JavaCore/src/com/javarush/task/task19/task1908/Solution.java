@@ -27,9 +27,7 @@ public class Solution {
         BufferedReader reader = new BufferedReader(fileReader);
         Scanner scanner;
         String line = "";
-        char[] buff = new char[1];
         while (reader.ready()){
-//            reader.read(buff);
             String nextLine = reader.readLine();
             scanner = new Scanner(nextLine);
             while (scanner.hasNext()) {
