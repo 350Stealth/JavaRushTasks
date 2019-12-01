@@ -17,6 +17,8 @@ public class Solution {
         PrintStream stream = new PrintStream(outputStream);
         System.setOut(stream);
         
+        testString.printSomething();
+        
         String result = outputStream.toString().replaceAll("[^\\p{Digit}]", "");
         
         System.setOut(consoleStream);
