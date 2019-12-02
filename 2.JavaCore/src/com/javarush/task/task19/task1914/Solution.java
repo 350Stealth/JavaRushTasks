@@ -42,7 +42,7 @@ public class Solution {
             symbol = m.group();
         }
         
-        int answer;
+        int answer = 0;
         
         switch (symbol) {
             case "+":
@@ -52,7 +52,7 @@ public class Solution {
                 answer = Integer.parseInt(nums[0]) - Integer.parseInt(nums[1]);
                 break;
             case "*":
-                answer = Integer.parseInt(nums[1]) * Integer.parseInt(nums[1]);
+                answer = Integer.parseInt(nums[0]) * Integer.parseInt(nums[1]);
                 break;
         }
     
