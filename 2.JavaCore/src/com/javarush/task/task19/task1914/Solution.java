@@ -26,20 +26,21 @@ public class Solution {
         
         String[] nums = new String[2];
         int i = 0;
-        Pattern patternNums = Pattern.compile("\\d"); //(\d+)\s([(+)(-)(\*)])\s(\d+)
+        Pattern patternNums = Pattern.compile("\\d+"); //(\d+)\s([(+)(-)(\*)])\s(\d+)
         Matcher m = patternNums.matcher(result);
         while (m.find( )) {
 //            System.out.println(m.group(0));
 //            System.out.println(m.group(1));
 //            System.out.println(m.group());
             nums[i] = m.group();
+            i++;
         }
         
-        Pattern patternSymbol = Pattern.compile("\\*");
+        Pattern patternSymbol = Pattern.compile("[\\+\\-\\*]");
         Matcher mSym = patternSymbol.matcher(result);
         String symbol = "";
-        if (m.find()) {
-            symbol = m.group();
+        if (mSym.find()) {
+            symbol = mSym.group();
         }
         
         int answer;
@@ -47,16 +48,18 @@ public class Solution {
         switch (symbol) {
             case "+":
                 answer = Integer.parseInt(nums[0]) + Integer.parseInt(nums[1]);
+                System.out.println(String.format("%s %s %s = %d", nums[0], symbol, nums[1], answer));
                 break;
             case "-":
                 answer = Integer.parseInt(nums[0]) - Integer.parseInt(nums[1]);
+                System.out.println(String.format("%s %s %s = %d", nums[0], symbol, nums[1], answer));
                 break;
             case "*":
-                answer = Integer.parseInt(nums[1]) * Integer.parseInt(nums[1]);
+                answer = Integer.parseInt(nums[0]) * Integer.parseInt(nums[1]);
+                System.out.println(String.format("%s %s %s = %d", nums[0], symbol, nums[1], answer));
                 break;
         }
     
-        System.out.println(String.format("%s %s %s = %d", nums[0], symbol, nums[1], answer));
     }
 
     public static class TestString {
