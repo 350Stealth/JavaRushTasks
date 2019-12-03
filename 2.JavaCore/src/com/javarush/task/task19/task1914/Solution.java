@@ -43,7 +43,7 @@ public class Solution {
             symbol = mSym.group();
         }
         
-        int answer;
+        int answer = 0;
         
         switch (symbol) {
             case "+":
