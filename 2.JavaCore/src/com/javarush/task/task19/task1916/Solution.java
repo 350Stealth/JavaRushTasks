@@ -22,7 +22,20 @@ public class Solution {
         consolReader.close();
     
         FileReader fileReader_1 = new FileReader(new File(fileIn_1));
+        BufferedReader reader_1 = new BufferedReader(fileReader_1);
         FileReader fileReader_2 = new FileReader(new File(fileIn_2));
+        BufferedReader reader_2 = new BufferedReader(fileReader_2);
+        
+        ArrayList<String> linesFromFF = new ArrayList<>();
+        ArrayList<String> linesFromSF = new ArrayList<>();
+        
+        while (reader_1.ready()) {
+            linesFromFF.add(reader_1.readLine());
+        }
+        
+        while (reader_2.ready()) {
+            linesFromSF.add(reader_2.readLine());
+        }
         
         fileReader_2.close();
         fileReader_1.close();
