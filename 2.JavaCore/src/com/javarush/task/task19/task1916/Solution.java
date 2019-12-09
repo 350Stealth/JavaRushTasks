@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /* 
 Отслеживаем изменения
@@ -14,16 +13,16 @@ import java.util.Scanner;
 
 public class Solution {
     public static List<LineItem> lines = new ArrayList<LineItem>();
-
-    public static void main(String[] args) throws Exception{
+    
+    public static void main(String[] args) throws Exception {
         BufferedReader consolReader = new BufferedReader(new InputStreamReader(System.in));
         String fileIn_1 = consolReader.readLine();
         String fileIn_2 = consolReader.readLine();
         consolReader.close();
-        
+
 //        String fileIn_1 = "e:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in1.txt";
 //        String fileIn_2 = "e:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in2.txt";
-    
+        
         FileReader fileReader_1 = new FileReader(new File(fileIn_1));
         BufferedReader reader_1 = new BufferedReader(fileReader_1);
         FileReader fileReader_2 = new FileReader(new File(fileIn_2));
@@ -55,14 +54,14 @@ public class Solution {
                 lines.add(new LineItem(Type.SAME, linesFromFF.get(i + 1)));
 //                System.out.println("SAME " + linesFromFF.get(i + 1));
                 j++;
-                i+=2;
+                i += 2;
             } else if ((j + 1) < linesFromSF.size() && linesFromSF.get(j + 1).equals(linesFromFF.get(i))) {
                 lines.add(new LineItem(Type.ADDED, linesFromSF.get(j)));
 //                System.out.println("ADDED " + linesFromSF.get(j));
                 lines.add(new LineItem(Type.SAME, linesFromFF.get(i)));
 //                System.out.println("SAME " + linesFromFF.get(i));
                 i++;
-                j+=2;
+                j += 2;
             }
         }
         
@@ -71,17 +70,17 @@ public class Solution {
         fileReader_1.close();
         reader_1.close();
     }
-
+    
     public static enum Type {
         ADDED,        //добавлена новая строка
         REMOVED,      //удалена строка
         SAME          //без изменений
     }
-
+    
     public static class LineItem {
         public Type type;
         public String line;
-
+        
         public LineItem(Type type, String line) {
             this.type = type;
             this.line = line;
