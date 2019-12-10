@@ -55,6 +55,15 @@ public class ForceTableSwitch {
                     Y = strings[2];
                     Z = strings[3];
                     line = X + COMMA + Y + COMMA + Z + COMMA + Pa;
+//                    if (Z.matches("\\-\\d*.*")) {
+//
+//                    }
+                    try {
+                        Double Z_double = Double.parseDouble(Z) * (-1.0);
+                        Z = Z_double.toString();
+                    } catch (Exception e) {
+                    
+                    }
                     lineZMirror = X + COMMA + Y + COMMA + Z + COMMA + Pa;
     
                     writer.write(line);
