@@ -48,7 +48,7 @@ public class ForceTableSwitch {
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 
-                if (counter == 5) {
+                if (/*counter == 5*/ true) {
                     strings = line.split(COMMA);
                     Pa = strings[0];
                     X = strings[1];
