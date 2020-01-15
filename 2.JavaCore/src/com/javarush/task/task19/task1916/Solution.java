@@ -23,8 +23,11 @@ public class Solution {
 //        String fileIn_1 = "e:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in1.txt";
 //        String fileIn_2 = "e:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in2.txt";
 
-        String fileIn_1 = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in1.txt";
-        String fileIn_2 = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in2.txt";
+//        String fileIn_1 = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in1.txt";
+//        String fileIn_2 = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1916\\in2.txt";
+        
+        String fileIn_1 = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1916/in1.txt";
+        String fileIn_2 = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1916/in2.txt";
     
         FileReader fileReader_1 = new FileReader(new File(fileIn_1));
         BufferedReader reader_1 = new BufferedReader(fileReader_1);
@@ -46,6 +49,15 @@ public class Solution {
         reader_1.close();
         fileReader_2.close();
         fileReader_1.close();
+    
+        for (String item: linesFromFF) {
+            System.out.println(item);
+        }
+        System.out.println();
+        for (String item: linesFromSF) {
+            System.out.println(item);
+        }
+        System.out.println();
         
         int i = 0;
         int j = 0;
@@ -59,32 +71,32 @@ public class Solution {
                 if (j + 1 < linesFromSF.size()) j++;
             } else if ((i + 1) < linesFromFF.size() && linesFromFF.get(i + 1).equals(linesFromSF.get(j))) {
                 lines.add(new LineItem(Type.REMOVED, linesFromFF.get(i)));
-                lines.add(new LineItem(Type.SAME, linesFromFF.get(i + 1)));
+/*//                lines.add(new LineItem(Type.SAME, linesFromFF.get(i + 1)));
 //                j++;
-                if (j + 1 < linesFromSF.size()) {
+              *//*  if (j + 1 < linesFromSF.size()) {
                     j++;
-                }
+                }*//*
 //                i += 2;
-                if (i + 2 < linesFromFF.size()) {
+               *//* if (i + 2 < linesFromFF.size()) {
                     i += 2;
-                } else {
+                } else {*/
                     i++;
-                }
+//                }
             } else if ((j + 1) < linesFromSF.size() && linesFromSF.get(j + 1).equals(linesFromFF.get(i))) {
                 lines.add(new LineItem(Type.ADDED, linesFromSF.get(j)));
-                lines.add(new LineItem(Type.SAME, linesFromFF.get(i)));
+/*//                lines.add(new LineItem(Type.SAME, linesFromFF.get(i)));
 //                i++;
-                if (i + 1 < linesFromFF.size()) {
+                *//*if (i + 1 < linesFromFF.size()) {
                     i++;
-                }
+                }*//*
 //                j += 2;
-                if (j + 2 < linesFromSF.size()) {
+                *//*if (j + 2 < linesFromSF.size()) {
                     j += 2;
-                } else {
+                } else {*/
                     j++;
-                }
+//                }
             }
-            if (i + 1 >= linesFromFF.size() && j + 1 >= linesFromSF.size()) {
+            if (i + 1 == linesFromFF.size() && j + 1 == linesFromSF.size()) {
                 break;
             }
         }
@@ -94,7 +106,6 @@ public class Solution {
             System.out.printf("%s: %s", item.line, item.type);
             System.out.println();
         }
-        
     }
     
     public static enum Type {
