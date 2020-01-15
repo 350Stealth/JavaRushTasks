@@ -65,36 +65,14 @@ public class Solution {
         while (/*i < linesFromFF.size() && j < linesFromSF.size()*/true) {
             if (linesFromFF.get(i).equals(linesFromSF.get(j))) {
                 lines.add(new LineItem(Type.SAME, linesFromFF.get(i)));
-//                i++;
                 if (i + 1 < linesFromFF.size()) i++;
-//                j++;
                 if (j + 1 < linesFromSF.size()) j++;
             } else if ((i + 1) < linesFromFF.size() && linesFromFF.get(i + 1).equals(linesFromSF.get(j))) {
                 lines.add(new LineItem(Type.REMOVED, linesFromFF.get(i)));
-/*//                lines.add(new LineItem(Type.SAME, linesFromFF.get(i + 1)));
-//                j++;
-              *//*  if (j + 1 < linesFromSF.size()) {
-                    j++;
-                }*//*
-//                i += 2;
-               *//* if (i + 2 < linesFromFF.size()) {
-                    i += 2;
-                } else {*/
                     i++;
-//                }
             } else if ((j + 1) < linesFromSF.size() && linesFromSF.get(j + 1).equals(linesFromFF.get(i))) {
                 lines.add(new LineItem(Type.ADDED, linesFromSF.get(j)));
-/*//                lines.add(new LineItem(Type.SAME, linesFromFF.get(i)));
-//                i++;
-                *//*if (i + 1 < linesFromFF.size()) {
-                    i++;
-                }*//*
-//                j += 2;
-                *//*if (j + 2 < linesFromSF.size()) {
-                    j += 2;
-                } else {*/
                     j++;
-//                }
             }
             if (i + 1 == linesFromFF.size() && j + 1 == linesFromSF.size()) {
                 break;
