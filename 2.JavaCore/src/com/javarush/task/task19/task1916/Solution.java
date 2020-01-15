@@ -38,6 +38,11 @@ public class Solution {
         while (reader_2.ready()) {
             linesFromSF.add(reader_2.readLine());
         }
+    
+        reader_2.close();
+        reader_1.close();
+        fileReader_2.close();
+        fileReader_1.close();
         
         int i = 0;
         int j = 0;
@@ -65,10 +70,6 @@ public class Solution {
             }
         }
         
-        fileReader_2.close();
-        reader_2.close();
-        fileReader_1.close();
-        reader_1.close();
     }
     
     public static enum Type {
