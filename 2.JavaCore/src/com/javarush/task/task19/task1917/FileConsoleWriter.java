@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class FileConsoleWriter {
     public static void main(String[] args) {
-
+    
     }
     
     private FileWriter fileWriter;
@@ -20,8 +20,8 @@ public class FileConsoleWriter {
     
     public void write(char[] cbuf, int off, int len) throws IOException {
         fileWriter.write(cbuf, off, len);
-        String line = String.valueOf(cbuf, off, len);
-        System.out.println(line);
+//        String line = String.valueOf(cbuf, off, len);
+        System.out.println(String.valueOf(cbuf, off, len));
     }
     
     public void write(int c) throws IOException {
@@ -36,11 +36,17 @@ public class FileConsoleWriter {
     
     public void write(String str, int off, int len) throws IOException {
         fileWriter.write(str, off, len);
-        String line = String.valueOf(str.toCharArray(), off, len);
-        System.out.println(line);
+//        String line = String.valueOf(str.toCharArray(), off, len);
+        System.out.println(String.valueOf(str.toCharArray(), off, len));
     }
     
     public void write(char[] cbuf) throws IOException {
+        fileWriter.write(cbuf);
+//        String line = String.copyValueOf(cbuf);
+        System.out.println(String.copyValueOf(cbuf));
+    }
     
+    public void close() throws IOException {
+        fileWriter.close();
     }
 }
