@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Solution {
@@ -20,12 +21,12 @@ public class Solution {
         bufferedReader.close();
         
          //input data
-//        String fileName = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1918\\in.txt";
-        String fileName = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1918/in.txt";
+        String fileName = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1918\\in.txt";
+//        String fileName = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1918/in.txt";
         
         args = new String[] {"span"};
         
-        String regexpression = String.format("(<%s>)*?(</%s>)", args[0], args[0]);
+        String regexpression = String.format("(<%s.*?>).*?(</%s>)", args[0], args[0]);
         System.out.println(regexpression);
         String textFromFile = "";
         Scanner scanner = new Scanner(new FileReader(fileName));
@@ -33,24 +34,17 @@ public class Solution {
             textFromFile += scanner.next();
         }
         scanner.close();
-    
+
+        List<String> strArrList = new ArrayList<>();
         Pattern pattern = Pattern.compile(regexpression);
-    
-        System.out.println(pattern.pattern());
-        
-//        String[] strArray = textFromFile.split(regexpression);
-        String[] strArray = pattern.split(textFromFile.subSequence(0, textFromFile.length()));
-//        List<String> strArrList = new ArrayList<>();
-        
-//        while (textFromFile.matches(regexpression)) {
-//            strArrList.add(textFromFile.);
-//        }
+        Matcher mText = pattern.matcher(textFromFile);
+        while (mText.find()) {
+            strArrList.add(mText.group());
+        }
         
         System.out.println(textFromFile);
-        for (String item: strArray) {
+        for (String item: strArrList) {
             System.out.println(item);
         }
-//        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-    
     }
 }
