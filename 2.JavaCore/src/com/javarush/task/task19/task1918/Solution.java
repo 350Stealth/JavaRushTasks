@@ -28,16 +28,16 @@ public class Solution {
         
         String regexpression = String.format("(<%s.*?>).*?(</%s>)", args[0], args[0]);
         System.out.println(regexpression);
-        String textFromFile = "";
+        StringBuilder textFromFile = new StringBuilder();
         Scanner scanner = new Scanner(new FileReader(fileName));
         while (scanner.hasNext()) {
-            textFromFile += scanner.next();
+            textFromFile.append(scanner.next());
         }
         scanner.close();
 
         List<String> strArrList = new ArrayList<>();
         Pattern pattern = Pattern.compile(regexpression);
-        Matcher mText = pattern.matcher(textFromFile);
+        Matcher mText = pattern.matcher(textFromFile.toString());
         while (mText.find()) {
             strArrList.add(mText.group());
         }
