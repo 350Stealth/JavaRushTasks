@@ -26,8 +26,11 @@ public class Solution {
         
         args = new String[] {"span"};
         
-        String regexpression = String.format("(<%s.*?>).*?(</%s>)", args[0], args[0]);
-        System.out.println(regexpression);
+//        String regexpressionStart = String.format("(<%s.*?>).*?(</%s>)", args[0], args[0]);
+        String regexpressionStart = String.format("(<%s.*?>)", args[0]);
+        String regexpressionEnd = String.format("(</%s>)", args[0]);
+        System.out.println(regexpressionStart);
+        System.out.println(regexpressionEnd);
         StringBuilder textFromFile = new StringBuilder();
         Scanner scanner = new Scanner(new FileReader(fileName));
         while (scanner.hasNext()) {
@@ -36,14 +39,37 @@ public class Solution {
         scanner.close();
 
         List<String> strArrList = new ArrayList<>();
-        Pattern pattern = Pattern.compile(regexpression);
+        List<Integer> intArrStart = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regexpressionStart);
         Matcher mText = pattern.matcher(textFromFile.toString());
         while (mText.find()) {
             strArrList.add(mText.group());
+            intArrStart.add(mText.start());
+        }
+        
+        List<String> strArrListEnd = new ArrayList<>();
+        List<Integer> intArrEnd = new ArrayList<>();
+        Pattern patternEnd = Pattern.compile(regexpressionEnd);
+        Matcher mTextEnd = patternEnd.matcher(textFromFile.toString());
+        while (mTextEnd.find()) {
+            strArrListEnd.add(mTextEnd.group());
+            intArrEnd.add(mTextEnd.start());
         }
         
         System.out.println(textFromFile);
         for (String item: strArrList) {
+            System.out.println(item);
+        }
+        for (Integer item: intArrStart) {
+            System.out.println(item);
+        }
+    
+        System.out.println("--------");
+    
+        for (String item: strArrListEnd) {
+            System.out.println(item);
+        }
+        for (Integer item: intArrEnd) {
             System.out.println(item);
         }
     }
