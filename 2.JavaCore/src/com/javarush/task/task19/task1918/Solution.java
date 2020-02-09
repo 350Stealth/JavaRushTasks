@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,16 +20,10 @@ public class Solution {
 //        String fileName = bufferedReader.readLine();
         bufferedReader.close();
         
-<<<<<<< Updated upstream
          //input data
         String fileName = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1918\\in.txt";
 //        String fileName = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1918/in.txt";
-=======
-        //input data
-//        String fileName = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1918\\in.txt";
-        String fileName = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1918/in.txt";
->>>>>>> Stashed changes
-        
+
         args = new String[]{"span"};
         
 //        String regexpressionStart = String.format("(<%s.*?>).*?(</%s>)", args[0], args[0]);
@@ -41,7 +37,6 @@ public class Solution {
             textFromFile.append(scanner.next());
         }
         scanner.close();
-<<<<<<< Updated upstream
 
         List<String> strArrList = new ArrayList<>();
         List<Integer> intArrStart = new ArrayList<>();
@@ -61,25 +56,10 @@ public class Solution {
             intArrEnd.add(mTextEnd.start());
         }
         
-        System.out.println(textFromFile);
-        for (String item: strArrList) {
-=======
-        
-        Pattern pattern = Pattern.compile(regexpression);
-        
         System.out.println(pattern.pattern());
 
-//        String[] strArray = textFromFile.split(regexpression);
-        String[] strArray = pattern.split(textFromFile.subSequence(0, textFromFile.length()));
-//        List<String> strArrList = new ArrayList<>();
-
-//        while (textFromFile.matches(regexpression)) {
-//            strArrList.add(textFromFile.);
-//        }
-        
         System.out.println(textFromFile);
-        for (String item : strArray) {
->>>>>>> Stashed changes
+        for (String item : strArrList) {
             System.out.println(item);
         }
         for (Integer item: intArrStart) {
@@ -94,5 +74,11 @@ public class Solution {
         for (Integer item: intArrEnd) {
             System.out.println(item);
         }
+        
+        String line = textFromFile.substring(intArrEnd.get(3), intArrEnd.get(3) + 7);
+        System.out.println(line);
+        
+        List<String> setOfTags = new ArrayList<>();
+        
     }
 }
