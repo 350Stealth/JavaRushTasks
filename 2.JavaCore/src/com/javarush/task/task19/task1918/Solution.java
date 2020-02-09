@@ -79,6 +79,13 @@ public class Solution {
         System.out.println(line);
         
         List<String> setOfTags = new ArrayList<>();
-        
+        if (!intArrStart.isEmpty() && !intArrStart.isEmpty()) {
+            int i = 0, j = 0;
+            while (true){
+                while (intArrStart.get(i) > 0) {
+                
+                }
+            }
+        }
     }
 }
