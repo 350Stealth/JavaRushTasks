@@ -79,6 +79,19 @@ public class Solution {
         System.out.println(line);
         
         List<String> setOfTags = new ArrayList<>();
-        
+        int startIndex = 0, endIndex = 0;
+        while (true) {
+            int startPos = intArrStart.get(startIndex);
+            int endPos = intArrEnd.get(endIndex) + 7;
+            if (startPos > endPos) {
+                endIndex++;
+                continue;                               //check for free ends
+            }
+            while (startPos > endPos || (startIndex + 1) < intArrStart.size()) {
+            
+            }
+//            while (startPos)
+            break;
+        }
     }
 }
