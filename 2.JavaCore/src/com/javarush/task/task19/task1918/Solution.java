@@ -19,8 +19,8 @@ public class Solution {
         bufferedReader.close();
         
          //input data
-        String fileName = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1918\\in.txt";
-//        String fileName = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1918/in.txt";
+//        String fileName = "d:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1918\\in.txt";
+        String fileName = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1918/in.txt";
 
         args = new String[]{"span"};
         
@@ -81,7 +81,7 @@ public class Solution {
         List<Integer> indexList = new ArrayList<>();
         int indexI = 0, indexJ = 0;
         boolean flagStart = true, flagEnd = true;
-        while (flagStart || flagEnd) {
+        /*while (flagStart || flagEnd) {
             if (intArrStart.get(indexI) < intArrEnd.get(indexJ)) {
 //                indexMap.put(intArrStart.get(indexI), regexpressionStart);
                 indexList.add(intArrStart.get(indexI));
@@ -107,6 +107,19 @@ public class Solution {
                 flagEnd = false;
 //                indexJ--;
             }
+        }*/
+        
+        indexList.addAll(intArrStart);
+        indexList.addAll(intArrEnd);
+        
+        Integer[] indexArray = new Integer[indexList.size()];
+        indexList.toArray(indexArray);
+        Arrays.sort(indexArray);
+        indexList.clear();
+//        Arrays.asList(indexList);
+    
+        for (int i = 0; i < indexArray.length; i++) {
+            indexList.add(indexArray[i]);
         }
     
        /* for (Map.Entry<Integer, String> item: indexMap.entrySet()) {
@@ -148,7 +161,7 @@ public class Solution {
                 continue;
             }
             k++;
-            while (k != 0 || j + 1 < indexList.size()) {
+            while (k != 0 && j + 1 < indexList.size()) {
                 j++;
                 if (intArrEnd.contains(indexList.get(j))){
                     k--;
@@ -157,9 +170,11 @@ public class Solution {
                 }
                 if (k == 0) {
                     endIndex = indexList.get(j) + 7;
+                    setOfTags.add(textFromFile.substring(startIndex, endIndex));
                 }
             }
-            setOfTags.add(textFromFile.substring(startIndex, endIndex));
+            i++;
+            j = i;
         }
     
         for (String item: setOfTags) {
