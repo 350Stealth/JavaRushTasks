@@ -15,12 +15,12 @@ public class Solution {
     public static final List<Person> PEOPLE = new ArrayList<Person>();
     
     public static void main(String[] args) throws IOException {
-
-//        String fileName = args[0];
-        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1921\\in.txt";
-        
+    
+        String fileName = args[0];
+//        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1921\\in.txt";
+    
         List<String> lines = new ArrayList<>();
-        
+    
         FileReader fileReader = new FileReader(fileName);
         Scanner scanner = new Scanner(fileReader);
         while (scanner.hasNextLine()) {
@@ -33,14 +33,20 @@ public class Solution {
             String[] words = item.split("\\s");
             int wordSize = words.length;
             StringBuilder name = new StringBuilder();
-            for (int i = 0; i < wordSize - 2; i++) {
-                name.append(String.format("%s ", words[i]));
+            for (int i = 0; i < wordSize - 3; i++) {
+                if (i > 0) {
+                    name.append(" ");
+                }
+                name.append(String.format("%s", words[i]));
             }
-            int date1 = Integer.parseInt(words[wordSize - 3]);
-            int date2 = Integer.parseInt(words[wordSize - 2]);
-            int date3 = Integer.parseInt(words[wordSize - 1]);
-            Date dateObject = new Date(date1, date2, date3);
-            
+            name.toString().trim();
+            int date1 = Integer.parseInt(words[wordSize - 3]); //day
+            int date2 = Integer.parseInt(words[wordSize - 2]) - 1; //month
+            int date3 = Integer.parseInt(words[wordSize - 1]) - 1900; //year
+            Date dateObject = new Date(date3, date2, date1);
+    
+//            System.out.println(String.format("%s: %s", name, dateObject.toString()));
+    
             PEOPLE.add(new Person(name.toString(), dateObject));
         }
     }
