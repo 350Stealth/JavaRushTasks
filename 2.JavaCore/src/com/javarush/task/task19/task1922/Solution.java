@@ -29,9 +29,11 @@ public class Solution {
 //        String fileName = bufferedReader.readLine();
         bufferedReader.close();
         
-        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1922\\in.txt";
+//        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task19\\task1922\\in.txt";
+        String fileName = "/home/stealth/Projects/Java/JavaRush/JavaRushTasks/2.JavaCore/src/com/javarush/task/task19/task1922/in.txt";
         
-        String regExpression = String.format("\\b[(%s)(%s)(%s)]\\b", words.get(0), words.get(1), words.get(2));
+        String regExpression = String.format("[(%s)(%s)(%s)]", words.get(0), words.get(1), words.get(2));
+//        String regExpression = String.format("\\b[(%s)]\\b", words.get(0));
         Pattern pattern = Pattern.compile(regExpression);
         List<String> lines = new ArrayList<>();
         
