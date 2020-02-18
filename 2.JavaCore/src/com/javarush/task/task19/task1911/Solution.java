@@ -19,8 +19,6 @@ public class Solution {
         
         System.setOut(stream);
         
-//        TestString testString = new TestString();
-        
         testString.printSomething();
         
         String result = outputStream.toString().toUpperCase();

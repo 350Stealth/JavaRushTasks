@@ -4,10 +4,22 @@ package com.javarush.task.task19.task1927;
 Контекстная реклама
 */
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class Solution {
     public static TestString testString = new TestString();
 
     public static void main(String[] args) {
+        PrintStream concoleStream = System.out; //default stream
+    
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        
+        PrintStream stream = new PrintStream(outputStream);
+        
+        System.setOut(stream);
+        
+        
     }
 
     public static class TestString {
