@@ -1,6 +1,5 @@
 package com.javarush.task.task19.task1928;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +12,7 @@ public class Solution {
     {
         System.out.println("This is the Solution class");
     }
-
+    
     public static void main(String... args) throws IOException {
         try (
             FileOutputStream outputStream = new FileOutputStream(args[0]);
@@ -22,10 +21,10 @@ public class Solution {
             ;
             byte[] b = new byte[is.available()];
             outputStream.write(is.read(b));
-
+            
             int value = 123_456_789;
             System.out.println(value);
-
+            
             Example result = null;
             String s = "a";
             switch (s) {
@@ -42,31 +41,31 @@ public class Solution {
                     break;
                 }
             }
-
+            
             if (result instanceof C) {
                 C p = (C) result;
                 System.out.println(p.getClass().getSimpleName());
             }
-
+            
         } catch (IOException e) {
         }
     }
-
+    
     interface Example {
     }
-
+    
     class A implements Example {
         {
             System.out.println("This is the A class");
         }
     }
-
+    
     class B implements Example {
         {
             System.out.println("This is the B class");
         }
     }
-
+    
     class C extends A {
         {
             System.out.println("This is the C class");
