@@ -1,7 +1,9 @@
 package com.javarush.task.task20.task2002;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /* 
@@ -12,17 +14,25 @@ public class Solution {
         //you can find your_file_name.tmp in your TMP directory or adjust outputStream/inputStream according to your file's actual location
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
-            File yourFile = File.createTempFile("your_file_name", null);
+            String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2002\\in.txt";
+            File yourFile = File.createTempFile(fileName, null);
             OutputStream outputStream = new FileOutputStream(yourFile);
             InputStream inputStream = new FileInputStream(yourFile);
 
             JavaRush javaRush = new JavaRush();
             //initialize users field for the javaRush object here - инициализируйте поле users для объекта javaRush тут
+            User ivanov = new User();
+            ivanov.setFirstName("Ivan");
+            ivanov.setLastName("Ivanov");
+            ivanov.setBirthDate(new Date());
+            ivanov.setMale(true);
+            ivanov.setCountry(User.Country.RUSSIA);
+            javaRush.users.add(ivanov);
             javaRush.save(outputStream);
             outputStream.flush();
 
             JavaRush loadedObject = new JavaRush();
-            loadedObject.load(inputStream);
+//            loadedObject.load(inputStream);
             //here check that the javaRush object is equal to the loadedObject object - проверьте тут, что javaRush и loadedObject равны
 
             outputStream.close();
@@ -42,6 +52,30 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            String fileNameTest = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2002\\out.txt"; //------------
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+            BufferedWriter writerTest = new BufferedWriter(new FileWriter(fileNameTest)); //-------------
+            boolean flag = false;
+            for (User item: this.users) {
+                if (flag) {
+                    writer.write("\n");
+                    writerTest.write("\n");
+                } else {
+                    flag = true;
+                }
+                writer.write(String.format("%s %s\n", item.getFirstName(), item.getLastName()));
+                writerTest.write(String.format("%s %s\n", item.getFirstName(), item.getLastName())); //-----------
+                writer.write(String.format("%s\n",item.getBirthDate().toString()));
+                writerTest.write(String.format("%s\n",item.getBirthDate().toString())); //-----------
+                writer.write(item.isMale()? "Male" : "Female");
+                writerTest.write(item.isMale()? "Male" : "Female"); //----------
+                writer.write("\n");
+                writerTest.write("\n"); //------------
+                writer.write(String.format("%s", item.getCountry().getDisplayName()));
+                writerTest.write(String.format("%s", item.getCountry().getDisplayName())); //-----------
+            }
+            writerTest.close(); //-------------
+            writer.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
