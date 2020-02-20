@@ -72,31 +72,38 @@ public class Solution {
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+//            BufferedWriter writerTest = new BufferedWriter(new FileWriter("D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2001\\out.txt"));
             writer.write(this.name);
-            writer.newLine();
+//            writerTest.write(this.name); //-----------
             if (this.assets.size() > 0) {
                 for (Asset item: this.assets) {
-                    writer.write(String.format("%s %d", item.getName(), item.getPrice()));
-                    writer.newLine();
+                    writer.write(String.format("\n%s %s", item.getName(), item.getPrice()));
+//                    writerTest.write(String.format("\n%s %s", item.getName(), item.getPrice())); //-----------
+//                    System.out.println(String.format("\n%s %s", item.getName(), item.getPrice()));
                     writer.flush();
+//                    writerTest.flush();
                 }
-            } else {
-//                writer.write("null");
             }
             writer.close();
+//            writerTest.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
             Scanner scanner = new Scanner(inputStream);
             if (scanner.hasNextLine()) {
-                System.out.println("Reading name");
+//                System.out.println("Reading name");
                 this.name = scanner.nextLine();
-                System.out.println(this.name);
+//                System.out.println(this.name);
             }
-            if (scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 String line = scanner.next();
-                double number = scanner.nextDouble();
+//                double number = scanner.nextDouble();
+                String strNum = scanner.next();
+//                System.out.println(line);
+//                System.out.println(strNum);
+                double number = Double.parseDouble(strNum);
+//                System.out.println(number);
                 this.assets.add(new Asset(line, number));
             }
             scanner.close();
