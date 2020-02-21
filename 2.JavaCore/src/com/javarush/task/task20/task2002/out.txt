@@ -1,8 +1,0 @@
-Ivan Ivanov
-Fri Feb 21 16:06:03 MSK 2020
-Male
-Russia
-Anna Petrova
-Fri Feb 21 16:06:03 MSK 2020
-Female
-Ukraine
