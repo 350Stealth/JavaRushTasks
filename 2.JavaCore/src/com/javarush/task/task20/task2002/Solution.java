@@ -14,8 +14,7 @@ public class Solution {
         //you can find your_file_name.tmp in your TMP directory or adjust outputStream/inputStream according to your file's actual location
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
-//            String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2002\\in.txt";
-            String fileName = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task20/task2002/in.txt";
+            String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2002\\in.txt";
             File yourFile = File.createTempFile(fileName, null);
             OutputStream outputStream = new FileOutputStream(yourFile);
             InputStream inputStream = new FileInputStream(yourFile);
@@ -28,14 +27,7 @@ public class Solution {
             ivanov.setBirthDate(new Date());
             ivanov.setMale(true);
             ivanov.setCountry(User.Country.RUSSIA);
-            User petrova = new User();
-            petrova.setFirstName("Anna");
-            petrova.setLastName("Petrova");
-            petrova.setBirthDate(new Date());
-            petrova.setMale(false);
-            petrova.setCountry(User.Country.UKRAINE);
             javaRush.users.add(ivanov);
-            javaRush.users.add(petrova);
             javaRush.save(outputStream);
             outputStream.flush();
 
@@ -60,8 +52,7 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
-//            String fileNameTest = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2002\\out.txt"; //------------
-            String fileNameTest = "/home/stealth/Projects/Java/JavaRushTasks/2.JavaCore/src/com/javarush/task/task20/task2002/out.txt";
+            String fileNameTest = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2002\\out.txt"; //------------
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
             BufferedWriter writerTest = new BufferedWriter(new FileWriter(fileNameTest)); //-------------
             boolean flag = false;
