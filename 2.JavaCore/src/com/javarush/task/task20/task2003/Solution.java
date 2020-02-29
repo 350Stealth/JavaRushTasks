@@ -12,10 +12,11 @@ public class Solution {
     
     public static Map<String, String> properties = new HashMap<>();
 
-    public void fillInPropertiesMap() throws IOException{
+    public static void fillInPropertiesMap() throws IOException{
         //implement this method - реализуйте этот метод
         Scanner scanner = new Scanner(System.in);
-        String fileName = scanner.nextLine();
+//        String fileName = scanner.nextLine();
+        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\config.properties";
         scanner.close();
         InputStream stream = new FileInputStream(fileName);
         try {
@@ -26,7 +27,7 @@ public class Solution {
         stream.close();
     }
 
-    public void save(OutputStream outputStream) throws Exception {
+    public static void save(OutputStream outputStream) throws Exception {
         //implement this method - реализуйте этот метод
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
         boolean flag = false;
@@ -42,13 +43,32 @@ public class Solution {
         writer.close();
     }
 
-    public void load(InputStream inputStream) throws Exception {
+    public static void load(InputStream inputStream) throws Exception {
         //implement this method - реализуйте этот метод
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        reader.close();
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//        reader.close();
+        Scanner scanner = new Scanner(inputStream);
+        while (scanner.hasNextLine()) {
+            String keyLine = scanner.next();
+            if (keyLine.contains("////") || keyLine.contains("#") || keyLine.contains("!") || keyLine.isEmpty()) {
+                continue;
+            }
+            scanner.next();
+            String valueLine = scanner.nextLine();
+            properties.put(keyLine, valueLine);
+        }
+        scanner.close();
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException{
+//        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\config.properties";
+        fillInPropertiesMap();
+        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\out.txt";
+        OutputStream outputStream = new FileOutputStream(fileName);
+        try {
+            save(outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
