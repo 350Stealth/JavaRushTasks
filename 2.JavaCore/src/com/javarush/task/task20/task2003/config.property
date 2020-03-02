@@ -1,0 +1,65 @@
+// Video parameters
+FullScreen = 0
+ScreenSizeX = 1600
+ScreenSizeY = 1024
+MinDepthBits = 24
+MinStencilBits = 0
+TextureFormat = "ewrqwrwqer"
+D3DFMT_A8R8G8B8 = adfasdfasdf
+CompressedTextures = 0
+ShadowDetails = 3
+PhrasesEnable = 1
+MusicVolume = -4233
+GammaValue = 0
+SpecularMaps = 0
+Highlights = 1
+TransparentBrokenWindows = 1
+Filtering = 1
+HiResTextures = 1
+OneBitAlphaTrees = 0
+
+// Music & sound parameters
+FXSoundEnable = 1
+FXSoundVolume = -999
+AmbientSoundEnable = 1
+AmbientSoundVolume = -999
+MusicEnable = 1
+
+// UI parameters
+StartMainMenu = 1
+ShowVideo = 1
+ShouldPlayPromo = 0
+FastStartEnabled = 0
+DrawActionIcons = 1
+PlayPauseSound = 1
+PromptForUpdate = 1
+RestrictedPathfinding = 1
+ShowWeaponOnShoulder = 1
+UseForceMiss = 1
+UseSilencerDamage = 0
+UseOpticsDamage = 0
+
+// Control parameters
+AlternativeControl = 0
+
+// Camera parameters
+PositionCameraImmediately = 0
+
+// AutoSave parameters
+ASEnable = 1 
+ASOnCombatStart = 1 
+ASOnCombatEnd = 0 
+ASHourly = 0 
+
+// Slomo parameters  
+SlomoEnabled = 1 
+MaxCivilians = -1 
+
+// Multiplayer parameters  
+SynchPosInterval = 1 
+LastScenario = "--**--**--**--"
+LastProvider = 0 
+LastDeviceIndex = 0 
+LastAddress = ""
+LastPort = 0 
+LastPlayerName = ""

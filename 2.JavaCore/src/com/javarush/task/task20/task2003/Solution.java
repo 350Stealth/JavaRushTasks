@@ -1,9 +1,7 @@
 package com.javarush.task.task20.task2003;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /*
 Знакомство с properties
@@ -11,12 +9,13 @@ import java.util.Scanner;
 public class Solution {
     
     public static Map<String, String> properties = new HashMap<>();
-
-    public static void fillInPropertiesMap() throws IOException{
+    
+    public /*static*/ void fillInPropertiesMap() throws IOException {
         //implement this method - реализуйте этот метод
         Scanner scanner = new Scanner(System.in);
 //        String fileName = scanner.nextLine();
-        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\config.properties";
+//        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\config.property";
+        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\cursors.property";
         scanner.close();
         InputStream stream = new FileInputStream(fileName);
         try {
@@ -26,12 +25,12 @@ public class Solution {
         }
         stream.close();
     }
-
-    public static void save(OutputStream outputStream) throws Exception {
+    
+    public /*static*/ void save(OutputStream outputStream) throws Exception {
         //implement this method - реализуйте этот метод
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+        /*BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
         boolean flag = false;
-        for (Map.Entry<String, String> item: properties.entrySet()) {
+        for (Map.Entry<String, String> item : properties.entrySet()) {
             if (flag) {
                 writer.newLine();
             } else {
@@ -40,14 +39,17 @@ public class Solution {
             writer.write(String.format("%s = %s", item.getKey(), item.getValue()));
             writer.flush();
         }
-        writer.close();
+        writer.close();*/
+        Properties prop = new Properties();
+        for (Map.Entry<String, String> item: properties.entrySet()) {
+            prop.setProperty(item.getKey(), item.getValue());
+        }
+        prop.store(outputStream, "");
     }
-
-    public static void load(InputStream inputStream) throws Exception {
+    
+    public /*static*/ void load(InputStream inputStream) throws Exception {
         //implement this method - реализуйте этот метод
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-//        reader.close();
-        Scanner scanner = new Scanner(inputStream);
+        /*Scanner scanner = new Scanner(inputStream);
         while (scanner.hasNextLine()) {
             String keyLine = scanner.next();
             if (keyLine.contains("////") || keyLine.contains("#") || keyLine.contains("!") || keyLine.isEmpty()) {
@@ -57,16 +59,25 @@ public class Solution {
             String valueLine = scanner.nextLine();
             properties.put(keyLine, valueLine);
         }
-        scanner.close();
+        scanner.close();*/
+        Properties prop = new Properties();
+        while (inputStream.available() > 0) {
+            prop.load(inputStream);
+        }
+        Set<String> keys = prop.stringPropertyNames();
+        for (String item: keys) {
+            properties.put(item, prop.getProperty(item));
+        }
     }
-
-    public static void main(String[] args) throws IOException{
+    
+    public static void main(String[] args) throws IOException {
 //        String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\config.properties";
-        fillInPropertiesMap();
+        Solution solution = new Solution();
+        solution.fillInPropertiesMap();
         String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2003\\out.txt";
         OutputStream outputStream = new FileOutputStream(fileName);
         try {
-            save(outputStream);
+            solution.save(outputStream);
         } catch (Exception e) {
             e.printStackTrace();
         }
