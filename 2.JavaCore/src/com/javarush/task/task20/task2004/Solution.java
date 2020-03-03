@@ -1,6 +1,7 @@
 package com.javarush.task.task20.task2004;
 
 import java.io.*;
+import java.util.Scanner;
 
 /*
 Читаем и пишем в файл статики
@@ -10,8 +11,8 @@ public class Solution {
         //you can find your_file_name.tmp in your TMP directory or adjust outputStream/inputStream according to your file's actual location
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
-            
-            File yourFile = File.createTempFile("your_file_name", null);
+            String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2004\\in.txt";
+            File yourFile = File.createTempFile(fileName, null);
             OutputStream outputStream = new FileOutputStream(yourFile);
             InputStream inputStream = new FileInputStream(yourFile);
 
@@ -28,6 +29,7 @@ public class Solution {
 
             loadedObject.load(inputStream);
             //here check that the classWithStatic object is equal to the loadedObject object - проверьте тут, что classWithStatic и loadedObject равны
+            System.out.println(loadedObject.equals(classWithStatic));
 
             outputStream.close();
             inputStream.close();
@@ -48,10 +50,22 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+            writer.write(String.format("%s\n%d\n%d", staticString, i, j));
+            System.out.println(String.format("%s\n%d\n%d", staticString, i, j));
+            writer.flush();
+            writer.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            Scanner scanner = new Scanner(inputStream);
+            while (scanner.hasNextLine()) {
+                staticString = scanner.nextLine();
+                i = scanner.nextInt();
+                j = scanner.nextInt();
+            }
+            scanner.close();
         }
 
         @Override
