@@ -1,9 +1,7 @@
 package com.javarush.task.task20.task2005;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /* 
 Очень странные дела
@@ -19,7 +17,7 @@ public class Solution {
             OutputStream outputStream = new FileOutputStream(your_file_name);
             InputStream inputStream = new FileInputStream(your_file_name);
             
-            Human ivanov = new Human("Ivanov", new Asset("home"), new Asset("car"));
+            Human ivanov = new Human("Ivanov", new Asset("home", 5.0), new Asset("car", 18.0));
             ivanov.save(outputStream);
             outputStream.flush();
             
@@ -27,6 +25,7 @@ public class Solution {
             somePerson.load(inputStream);
             //check here that ivanov equals to somePerson - проверьте тут, что ivanov и somePerson равны
             System.out.println(ivanov.equals(somePerson));
+//            System.out.println(ivanov.equals(ivanov));
             inputStream.close();
             
         } catch (IOException e) {
@@ -44,13 +43,13 @@ public class Solution {
         
         @Override
         public boolean equals(Object o) {
-            if (this == o) return false;
+            if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             
             Human human = (Human) o;
             
             if (name == null ? !name.equals(human.name) : human.name != null) return false;
-            return assets != null ? assets.equals(human.assets) : human.assets == null;
+            return Objects.equals(assets, human.assets);
             
         }
         
@@ -58,7 +57,7 @@ public class Solution {
         public int hashCode() {
             int result = name != null ? name.hashCode() : 0;
             result = 31 * result + (assets != null ? assets.hashCode() : 0);
-            return (int) (Math.random() * 100);
+            return /*(int) (Math.random() * 100)*/ result;
         }
         
         public Human() {
@@ -76,21 +75,36 @@ public class Solution {
             PrintWriter printWriter = new PrintWriter(outputStream);
             printWriter.println(this.name);
             if (this.assets.size() > 0) {
-                for (Asset current : this.assets)
+                for (Asset current : this.assets) {
                     printWriter.println(current.getName());
+                    printWriter.println(current.getPrice());
+                }
             }
             printWriter.close();
         }
         
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            /*BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             
             this.name = reader.readLine();
             String assetName;
             while ((assetName = reader.readLine()) != null)
                 this.assets.add(new Asset(assetName));
-            reader.close();
+            reader.close();*/
+            Scanner scanner = new Scanner(inputStream);
+            if (scanner.hasNextLine()) {
+                this.name = scanner.nextLine();
+                System.out.println(this.name); //----------
+            }
+            while (scanner.hasNextLine()){
+                String assetName = scanner.nextLine();
+                System.out.println(assetName); //--------
+                double assetPrice = Double.parseDouble(scanner.nextLine());
+                System.out.println(assetPrice); //----------
+                this.assets.add(new Asset(assetName, assetPrice));
+            }
+            scanner.close();
         }
     }
 }

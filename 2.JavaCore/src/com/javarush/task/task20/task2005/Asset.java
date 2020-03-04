@@ -1,8 +1,11 @@
 package com.javarush.task.task20.task2005;
 
+import java.util.Objects;
+
 public class Asset {
-    public Asset(String name) {
+    public Asset(String name, double price) {
         this.name = name;
+        setPrice(price);
     }
 
     private String name;
@@ -28,7 +31,7 @@ public class Asset {
         Asset asset = (Asset) o;
 
         if (Double.compare(asset.price, price) != 0) return false;
-        return name != null ? name.equals(asset.name) : asset.name == null;
+        return Objects.equals(name, asset.name);
 
     }
 
