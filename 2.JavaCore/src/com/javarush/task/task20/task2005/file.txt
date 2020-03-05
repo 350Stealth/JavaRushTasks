@@ -1,5 +1,3 @@
 Ivanov
 home
-5.0
 car
-18.0

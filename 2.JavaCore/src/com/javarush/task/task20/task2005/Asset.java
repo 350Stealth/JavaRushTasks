@@ -3,9 +3,8 @@ package com.javarush.task.task20.task2005;
 import java.util.Objects;
 
 public class Asset {
-    public Asset(String name, double price) {
+    public Asset(String name) {
         this.name = name;
-        setPrice(price);
     }
 
     private String name;
@@ -27,12 +26,13 @@ public class Asset {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
+    
         Asset asset = (Asset) o;
-
-        if (Double.compare(asset.price, price) != 0) return false;
-        return Objects.equals(name, asset.name);
-
+    
+        boolean nameTest = Objects.equals(name, asset.name);
+        boolean priceTest = Double.compare(asset.price, price) == 0;
+        return nameTest && priceTest;
+    
     }
 
     @Override
