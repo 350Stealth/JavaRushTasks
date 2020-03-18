@@ -1,5 +1,6 @@
 package com.javarush.task.task20.task2012;
 
+import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -17,7 +18,7 @@ public class Solution {
      *
      * @author JavaRush
      */
-    public static class OutputToConsole implements Serializable {
+    public static class OutputToConsole implements Externalizable {
         private int counter;
 
         /**
