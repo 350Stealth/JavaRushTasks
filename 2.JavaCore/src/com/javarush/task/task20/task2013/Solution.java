@@ -17,7 +17,10 @@ public class Solution {
         private Person mother;
         private Person father;
         private List<Person> children;
-
+    
+        public Person() {
+        }
+    
         public Person(String firstName, String lastName, int age) {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -48,12 +51,16 @@ public class Solution {
 
         @Override
         public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+            mother = (Person) in.readObject();
+            father = (Person) in.readObject();
             firstName = in.readLine();
             lastName = in.readLine();
-            father = (Person) in.readObject();
-            mother = (Person) in.readObject();
             age = in.readInt();
-            children = (List) in.readObject();
+            while (in.available() > 0) {
+                Person item = (Person) in.readObject();
+//                children = (List) in.readObject();
+                children.add(item);
+            }
         }
     }
 
