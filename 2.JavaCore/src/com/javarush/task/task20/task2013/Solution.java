@@ -41,26 +41,23 @@ public class Solution {
 
         @Override
         public void writeExternal(ObjectOutput out) throws IOException {
+            out.writeObject(firstName);
+            out.writeObject(lastName);
+            out.writeInt(age);
             out.writeObject(mother);
             out.writeObject(father);
-            out.writeChars(firstName);
-            out.writeChars(lastName);
-            out.writeInt(age);
             out.writeObject(children);
+            out.flush();
         }
 
         @Override
         public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+            firstName = (String) in.readObject();
+            lastName = (String) in.readObject();
+            age = in.readInt();
             mother = (Person) in.readObject();
             father = (Person) in.readObject();
-            firstName = in.readLine();
-            lastName = in.readLine();
-            age = in.readInt();
-            while (in.available() > 0) {
-                Person item = (Person) in.readObject();
-//                children = (List) in.readObject();
-                children.add(item);
-            }
+            children = (List<Person>) in.readObject();
         }
     }
 
