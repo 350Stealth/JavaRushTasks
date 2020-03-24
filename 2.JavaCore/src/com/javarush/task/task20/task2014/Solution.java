@@ -1,6 +1,6 @@
 package com.javarush.task.task20.task2014;
 
-import java.io.Serializable;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,5 +29,19 @@ public class Solution implements Serializable {
     @Override
     public String toString() {
         return this.string;
+    }
+    
+    String fileName = "D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2014\\test.txt";
+    File file = new File(fileName);
+        InputStream inputStream;
+        OutputStream outputStream;
+    
+    {
+        try {
+            inputStream = new BufferedInputStream(new FileInputStream(file));
+            outputStream = new BufferedOutputStream(new FileOutputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
