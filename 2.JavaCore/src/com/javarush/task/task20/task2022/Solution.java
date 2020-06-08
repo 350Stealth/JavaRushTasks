@@ -34,7 +34,11 @@ public class Solution implements Serializable, AutoCloseable {
         stream.close();
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        
+        //D:\IdeaProjects\JavaRushTasks\JavaRushTasks\2.JavaCore\src\com\javarush\task\task20\task2022\TestFile.txt
+        Solution sol = new Solution("D:\\IdeaProjects\\JavaRushTasks\\JavaRushTasks\\2.JavaCore\\src\\com\\javarush\\task\\task20\\task2022\\TestFile.txt");
+        sol.writeObject("Test String");
+        
     }
 }
