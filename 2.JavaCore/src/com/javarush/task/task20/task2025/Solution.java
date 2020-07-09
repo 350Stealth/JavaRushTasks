@@ -24,7 +24,6 @@ public class Solution {
     }
     
     private static long getSum(int dig, int pow){
-        
         long result = 0;
         return result;
     }
@@ -34,10 +33,10 @@ public class Solution {
         Set<Long> results = new TreeSet<>();
         for (long i = 1; i <= N; i++) {
             char[] digits = String.valueOf(i).toCharArray();
-            int size = String.valueOf(i).length();
+            int size = /*String.valueOf(i).length()*/digits.length;
             long longNum = 0;
             for (char digChar: digits) {
-                longNum = longNum + (long) Math.pow(Byte.parseByte(String.valueOf(digChar))*1.0, size*1.0);
+                longNum = longNum + numPows[Integer.parseInt(String.valueOf(digChar))][size-1];
                 if (longNum >= N) break;
             }
 //            System.out.print(i);
@@ -61,19 +60,19 @@ public class Solution {
         System.out.println(Arrays.toString(getNumbers(1000)));
         long b = System.currentTimeMillis();
         System.out.println("memory " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (8 * 1024));
-        System.out.println("time = " + (b - a) / 1000);
+        System.out.println("time = " + (b - a));
 
         a = System.currentTimeMillis();
         System.out.println(Arrays.toString(getNumbers(1000000)));
         b = System.currentTimeMillis();
         System.out.println("memory " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (8 * 1024));
-        System.out.println("time = " + (b - a) / 1000);
+        System.out.println("time = " + (b - a));
     
         a = System.currentTimeMillis();
-        System.out.println(Arrays.toString(getNumbers(5959458)));
+        System.out.println(Arrays.toString(getNumbers(59594589)));
         b = System.currentTimeMillis();
         System.out.println("memory " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (8 * 1024));
-        System.out.println("time = " + (b - a) / 1000);
+        System.out.println("time = " + (b - a));
     
         /*a = System.currentTimeMillis();
         System.out.println(Arrays.toString(getNumbers(Long.MAX_VALUE)));
