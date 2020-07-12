@@ -25,6 +25,17 @@ public class Solution {
     }
 
     public static int getRectangleCount(byte[][] a) {
+        int posI = 0,
+            posJ = 0,
+            i = 0,
+            j = 0;
+        
+        while (true) {
+            
+            
+            if (true) break;
+        }
+        
         return 0;
     }
 }
