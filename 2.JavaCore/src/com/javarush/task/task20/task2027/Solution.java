@@ -1,5 +1,6 @@
 package com.javarush.task.task20.task2027;
 
+import java.io.CharArrayReader;
 import java.util.List;
 
 /* 
@@ -20,9 +21,30 @@ public class Solution {
 home - (5, 3) - (2, 0)
 same - (1, 1) - (4, 1)
          */
+        for (int i = 0; i < crossword.length; i++) {
+            for (int j = 0; j < crossword[0].length; j++) {
+                System.out.print(Character.toChars(crossword[i][j])[0] + ", ");
+            }
+            System.out.println();
+        }
     }
 
     public static List<Word> detectAllWords(int[][] crossword, String... words) {
+
+        return null;
+    }
+
+    public static Word findHorizontal(int[][] crossword, String word){
+
+        return null;
+    }
+
+    public static Word findVertical(int[][] crossword, String word){
+
+        return null;
+    }
+
+    public static Word findDiagonal(int[][] crossword, String word){
 
         return null;
     }
