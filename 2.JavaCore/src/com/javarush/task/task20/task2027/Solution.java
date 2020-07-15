@@ -2,6 +2,8 @@ package com.javarush.task.task20.task2027;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /* 
 Кроссворд
@@ -32,11 +34,21 @@ same - (1, 1) - (4, 1)
     }
     
     public static List<Word> detectAllWords(int[][] crossword, String... words) {
-        Word testWord = new Word(words[0]);
-        testWord.setStartPoint(1,1);
-        testWord.setEndPoint(2,2);
-        System.out.println(testWord);
-        return null;
+        Word testWord = new Word(words[0]); // test line
+        testWord.setStartPoint(1,1); // test line
+        testWord.setEndPoint(2,2); // test line
+        System.out.println(testWord); // test line
+        
+        List<Word> result = new ArrayList<>();
+        for (String word: words) {
+            result.addAll(findHorizontal(crossword, word));
+        }
+        
+        // output for all elements of List<Word>
+        for (Word word: result) {
+            System.out.println(word);
+        }
+        return result;
     }
     
     public static List<Word> findHorizontal(int[][] crossword, String word) {
@@ -48,8 +60,14 @@ same - (1, 1) - (4, 1)
                 
             }
             String lineToTest = getString(intLine);
-            Word newWord = wordMatch(lineToTest, word);
-            if (newWord != null) result.add(newWord);
+            List<Word> newWords = wordMatch(lineToTest, word);
+            if (newWords.size() != 0) {
+                for (Word w: newWords) {
+                    w.setStartPoint(i, w.startY);
+                    w.setEndPoint(i, w.endY);
+                }
+                result.addAll(newWords);
+            }
         }
         
         return result;
@@ -75,9 +93,17 @@ same - (1, 1) - (4, 1)
         return line;
     }
     
-    public static Word wordMatch(String line, String testWord) {
-        
-        return null;
+    public static List<Word> wordMatch(String line, String testWord) {
+        List<Word> result = new ArrayList<>();
+        if (line.length() < testWord.length()) return result;
+        Pattern pattern = Pattern.compile(testWord);
+        Matcher matcher = pattern.matcher(line);
+        while (matcher.find()) {
+            Word word = new Word(testWord);
+            word.setStartPoint(matcher.start(), matcher.end());
+            result.add(word);
+        }
+        return result;
     }
     
     public static class Word {
