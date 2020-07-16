@@ -1,6 +1,9 @@
 package com.javarush.task.task20.task2027;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,8 +37,8 @@ same - (1, 1) - (4, 1)
     
     public static List<Word> detectAllWords(int[][] crossword, String... words) {
         Word testWord = new Word(words[0]); // test line
-        testWord.setStartPoint(1,1); // test line
-        testWord.setEndPoint(2,2); // test line
+        testWord.setStartPoint(1, 1); // test line
+        testWord.setEndPoint(2, 2); // test line
         System.out.println(testWord); // test line
         
         if (crossword == null) return null; // check array for empty
@@ -51,7 +54,7 @@ same - (1, 1) - (4, 1)
             // check cross diagonals
             setResult.addAll(findDiagonalCross(crossword, word));
         }
-    
+        
         System.out.println();
         // output for all elements of List<Word>
         List<Word> result = new ArrayList<>(setResult);
@@ -118,7 +121,7 @@ same - (1, 1) - (4, 1)
 //            System.out.println(lineToTest);             // for delete
             String lineToTestReverse = getString(intLineRev);
 //            System.out.println(lineToTestReverse);      // for delete
-        
+            
             // make lists of matches and correcting coordinates
             List<Word> newWords = wordMatch(lineToTest, word);
             List<Word> newWordsRev = wordMatch(lineToTestReverse, word);
@@ -141,7 +144,7 @@ same - (1, 1) - (4, 1)
                 result.addAll(newWordsRev);
             }
         }
-    
+        
         return result;
     }
     
@@ -184,13 +187,13 @@ same - (1, 1) - (4, 1)
         Pattern pattern = Pattern.compile(testWord);
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
-            
+
 //            System.out.println("Word: " + testWord);
             
             Word word = new Word(testWord);
             word.setStartPoint(matcher.start(), matcher.start());
             word.setEndPoint(matcher.end() - 1, matcher.end() - 1);
-    
+
 //            System.out.println(word);
             
             result.add(word);
@@ -228,16 +231,16 @@ same - (1, 1) - (4, 1)
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-        
+            
             Word word = (Word) o;
-        
+            
             if (startX != word.startX) return false;
             if (startY != word.startY) return false;
             if (endX != word.endX) return false;
             if (endY != word.endY) return false;
             return text.equals(word.text);
         }
-    
+        
         @Override
         public int hashCode() {
             int result = text.hashCode();
