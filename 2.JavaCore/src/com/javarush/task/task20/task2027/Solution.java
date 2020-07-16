@@ -47,9 +47,9 @@ same - (1, 1) - (4, 1)
             // check rows
             setResult.addAll(findVertical(crossword, word));
             // check straight diagonals
-            
+            setResult.addAll(findDiagonalStright(crossword, word));
             // check cross diagonals
-            
+            setResult.addAll(findDiagonalCross(crossword, word));
         }
     
         System.out.println();
@@ -63,13 +63,14 @@ same - (1, 1) - (4, 1)
     
     public static List<Word> findHorizontal(int[][] crossword, String word) {
         List<Word> result = new ArrayList<>();
-        for (int i = 0; i < crossword.length; i++) {
-            int rowLength = crossword[0].length;
-            int[] intLine = new int[rowLength];
-            int[] intLineRev = new int[rowLength];
-            for (int j = 0; j < rowLength; j++) {
+        int lineLength = crossword[0].length;
+        int rowLength = crossword.length;
+        for (int i = 0; i < rowLength; i++) {
+            int[] intLine = new int[lineLength];
+            int[] intLineRev = new int[lineLength];
+            for (int j = 0; j < lineLength; j++) {
                 intLine[j] = crossword[i][j];
-                intLineRev[rowLength - (j + 1)] = crossword[i][j];
+                intLineRev[lineLength - (j + 1)] = crossword[i][j];
             }
             String lineToTest = getString(intLine);
 //            System.out.println(lineToTest);             // for delete
@@ -90,8 +91,8 @@ same - (1, 1) - (4, 1)
             }
             if (newWordsRev.size() != 0) {
                 for (Word w: newWordsRev) {
-                    int wStartPoint = rowLength - (w.startX + 1);
-                    int wEndPoint = rowLength - (w.endX + 1);
+                    int wStartPoint = lineLength - (w.startX + 1);
+                    int wEndPoint = lineLength - (w.endX + 1);
                     w.setStartPoint(wStartPoint, i);
                     w.setEndPoint(wEndPoint, i);
                 }
@@ -104,8 +105,9 @@ same - (1, 1) - (4, 1)
     
     public static List<Word> findVertical(int[][] crossword, String word) {
         List<Word> result = new ArrayList<>();
-        for (int i = 0; i < crossword[0].length; i++) {
-            int rowLength = crossword.length;
+        int lineLength = crossword[0].length;
+        int rowLength = crossword.length;
+        for (int i = 0; i < lineLength; i++) {
             int[] intLine = new int[rowLength];
             int[] intLineRev = new int[rowLength];
             for (int j = 0; j < rowLength; j++) {
@@ -144,8 +146,21 @@ same - (1, 1) - (4, 1)
     }
     
     public static List<Word> findDiagonalStright(int[][] crossword, String word) {
-        
-        return null;
+        List<Word> result = new ArrayList<>();
+        int lineLength = crossword[0].length;
+        int rowLength = crossword.length;
+        boolean flag = false;
+        int counter = 0;
+        while (true){
+            if (flag) {
+            
+            } else {
+            
+            }
+            counter++;
+            if (flag && counter == lineLength) break;
+        }
+        return result;
     }
     
     public static List<Word> findDiagonalCross(int[][] crossword, String word) {
