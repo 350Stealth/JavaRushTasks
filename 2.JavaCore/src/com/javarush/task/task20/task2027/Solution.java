@@ -155,9 +155,12 @@ same - (1, 1) - (4, 1)
         boolean flag = false;
         int counter = 0;
         while (true){
-            if (flag) {
-            
-            } else {
+            if (!flag) {        // upcount tru row
+                int i = rowLength - (counter + 1); //row counter
+                int j = 0; // line counter
+                if (rowLength - counter <= 0) flag = true;
+            }
+            if (flag){      // count tru line
             
             }
             counter++;
