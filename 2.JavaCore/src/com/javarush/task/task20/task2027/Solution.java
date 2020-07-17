@@ -52,7 +52,7 @@ same - (1, 1) - (4, 1)
             // check straight diagonals
             setResult.addAll(findDiagonalStright(crossword, word));
             // check cross diagonals
-            setResult.addAll(findDiagonalCross(crossword, word));
+//            setResult.addAll(findDiagonalCross(crossword, word));
         }
         
         System.out.println();
@@ -158,6 +158,9 @@ same - (1, 1) - (4, 1)
             if (!flag) {        // upcount tru row
                 int i = rowLength - (counter + 1); //row counter
                 int j = 0; // line counter
+                while (i < rowLength && j < lineLength) {
+                
+                }
                 if (rowLength - counter <= 0) flag = true;
             }
             if (flag){      // count tru line
