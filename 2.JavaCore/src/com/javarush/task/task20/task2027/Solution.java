@@ -158,7 +158,12 @@ same - (1, 1) - (4, 1)
             if (!flag) {        // upcount tru row
                 int i = rowLength - (counter + 1); //row counter
                 int j = 0; // line counter
+                int[] intLine = new int[rowLength];
+                int[] intLineRev = new int[rowLength];
                 while (i < rowLength && j < lineLength) {
+                    intLine[j] = crossword[i][j];
+                }
+                for (int k = 0; k < intLine.length; k++) {
                 
                 }
                 if (rowLength - counter <= 0) flag = true;
