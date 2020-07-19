@@ -10,7 +10,7 @@ public class MinesweeperGame extends Game {
     
 //    @Override
     public void initialize() {
-//        super.initialize();
-//        setScreenSize(SIDE, SIDE);
+        super.initialize();
+        setScreenSize(SIDE, SIDE);
     }
 }

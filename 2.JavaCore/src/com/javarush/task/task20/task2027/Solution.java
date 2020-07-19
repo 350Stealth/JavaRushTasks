@@ -19,7 +19,7 @@ public class Solution {
             {'m', 'l', 'p', 'r', 'r', 'h'},
             {'p', 'o', 'e', 'e', 'j', 'j'}
         };
-        detectAllWords(crossword, "home", "same", "m", "rr", "vor", "re");
+        detectAllWords(crossword, /*"home", "same", "ll", "m", "rr", "vor",*/ "re", "ran");
         /*
 Ожидаемый результат
 home - (5, 3) - (2, 0)
@@ -46,13 +46,13 @@ same - (1, 1) - (4, 1)
         Set<Word> setResult = new HashSet<>();
         for (String word: words) {
             // check lines
-            setResult.addAll(findHorizontal(crossword, word));
+//            setResult.addAll(findHorizontal(crossword, word));
             // check rows
-            setResult.addAll(findVertical(crossword, word));
+//            setResult.addAll(findVertical(crossword, word));
             // check straight diagonals
-            setResult.addAll(findDiagonalStright(crossword, word));
+//            setResult.addAll(findDiagonalStright(crossword, word));
             // check cross diagonals
-//            setResult.addAll(findDiagonalCross(crossword, word));
+            setResult.addAll(findDiagonalCross(crossword, word));
         }
         
         System.out.println();
@@ -158,28 +158,198 @@ same - (1, 1) - (4, 1)
             if (!flag) {        // upcount tru row
                 int i = rowLength - (counter + 1); //row counter
                 int j = 0; // line counter
-                int[] intLine = new int[rowLength];
-                int[] intLineRev = new int[rowLength];
-                while (i < rowLength && j < lineLength) {
-                    intLine[j] = crossword[i][j];
-                }
-                for (int k = 0; k < intLine.length; k++) {
+                List<Integer> buff = new ArrayList<>();
                 
+                while (i < rowLength && j < lineLength) {
+                    buff.add(crossword[i][j]);
+                    i++;
+                    j++;
                 }
-                if (rowLength - counter <= 0) flag = true;
+    
+                int stringLength = buff.size() - 1;
+                int[] intLine = new int[buff.size()];
+                int[] intLineRev = new int[buff.size()];
+                for (int k = 0; k < buff.size(); k++) {
+                    intLine[k] = buff.get(k);
+                    intLineRev[(intLineRev.length - 1) - k] = buff.get(k);
+                }
+    
+                List<Word> newWords = new ArrayList<>(wordMatch(getString(intLine), word));
+                if (newWords.size() != 0) {
+                    for (Word w: newWords) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setStartPoint(wStartPoint, wStartPoint + counter);
+                        w.setEndPoint(wEndPoint, wEndPoint + counter);
+                    }
+                    result.addAll(newWords);
+                }
+    
+                List<Word> newWordsRev = new ArrayList<>(wordMatch(getString(intLineRev), word));
+                if (newWordsRev.size() != 0) {
+                    for (Word w: newWordsRev) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setStartPoint(stringLength - wStartPoint, (stringLength + counter) - wStartPoint);
+                        w.setEndPoint(stringLength - wEndPoint, (stringLength + counter) - wEndPoint);
+                    }
+                    result.addAll(newWordsRev);
+                }
+                
+                if (rowLength - (counter + 1) <= 0) {
+                    flag = true;
+                    counter = 1;
+                }
             }
-            if (flag){      // count tru line
             
+            if (flag){      // count tru line
+                int i = 0;
+                int j = counter;
+                List<Integer> buff = new ArrayList<>();
+                
+                while (i < rowLength && j < lineLength) {
+                    buff.add(crossword[i][j]);
+                    i++;
+                    j++;
+                }
+                
+                int stringLength = buff.size() - 1;
+                int[] intLine = new int[buff.size()];
+                int[] intLineRev = new int[buff.size()];
+                for (int k = 0; k < buff.size(); k++) {
+                    intLine[k] = buff.get(k);
+                    intLineRev[(intLineRev.length - 1) - k] = buff.get(k);
+                }
+    
+                List<Word> newWords = new ArrayList<>(wordMatch(getString(intLine), word));
+                if (newWords.size() != 0) {
+                    for (Word w: newWords) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setStartPoint(wStartPoint + counter, wStartPoint);
+                        w.setEndPoint(wEndPoint + counter, wEndPoint);
+                    }
+                    result.addAll(newWords);
+                }
+    
+                List<Word> newWordsRev = new ArrayList<>(wordMatch(getString(intLineRev), word));
+                if (newWordsRev.size() != 0) {
+                    for (Word w: newWordsRev) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setStartPoint((stringLength + counter) - wStartPoint, stringLength - wStartPoint);
+                        w.setEndPoint((stringLength + counter) -  wEndPoint, stringLength - wEndPoint);
+                    }
+                    result.addAll(newWordsRev);
+                }
+                
             }
             counter++;
-            if (flag && counter == lineLength) break;
+            if (flag && (counter == lineLength)) break;
         }
         return result;
     }
     
     public static List<Word> findDiagonalCross(int[][] crossword, String word) {
+        List<Word> result = new ArrayList<>();
+        int lineLength = crossword[0].length;
+        int rowLength = crossword.length;
+        boolean flag = false;
+        int counter = 0;
+        while (true){
+            if (!flag) {        // count tru line
+                int i = 0; //row counter
+                int j = counter; // line counter
+                List<Integer> buff = new ArrayList<>();
+            
+                while (i < rowLength && j >= 0) {
+                    buff.add(crossword[i][j]);
+                    i++;
+                    j--;
+                }
+    
+                int stringLength = buff.size() - 1;
+                int[] intLine = new int[buff.size()];
+                int[] intLineRev = new int[buff.size()];
+                for (int k = 0; k < buff.size(); k++) {
+                    intLine[k] = buff.get(k);
+                    intLineRev[(intLineRev.length - 1) - k] = buff.get(k);
+                }
+            
+                List<Word> newWords = new ArrayList<>(wordMatch(getString(intLine), word));
+                if (newWords.size() != 0) {
+                    for (Word w: newWords) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setStartPoint(counter  - wStartPoint, wStartPoint);
+                        w.setEndPoint(counter - wEndPoint, wEndPoint);
+                    }
+                    result.addAll(newWords);
+                }
+            
+                List<Word> newWordsRev = new ArrayList<>(wordMatch(getString(intLineRev), word));
+                if (newWordsRev.size() != 0) {
+                    for (Word w: newWordsRev) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setEndPoint(stringLength - counter + wStartPoint, stringLength - wStartPoint);
+                        w.setStartPoint(stringLength - counter + wEndPoint, stringLength - wEndPoint);
+                    }
+                    result.addAll(newWordsRev);
+                }
+            
+                if (lineLength - (counter + 1) <= 0) {
+                    flag = true;
+                    counter = 1;
+                }
+            }
         
-        return null;
+            if (flag){      // count tru line
+                int i = counter; //row counter
+                int j = lineLength - 1; // line counter
+                List<Integer> buff = new ArrayList<>();
+            
+                while (i < rowLength && j >= 0) {
+                    buff.add(crossword[i][j]);
+                    i++;
+                    j--;
+                }
+            
+                int stringLength = buff.size() - 1;
+                int[] intLine = new int[buff.size()];
+                int[] intLineRev = new int[buff.size()];
+                for (int k = 0; k < buff.size(); k++) {
+                    intLine[k] = buff.get(k);
+                    intLineRev[(intLineRev.length - 1) - k] = buff.get(k);
+                }
+            
+                List<Word> newWords = new ArrayList<>(wordMatch(getString(intLine), word));
+                if (newWords.size() != 0) {
+                    for (Word w: newWords) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setStartPoint(lineLength - 1 - wStartPoint, counter + wStartPoint);
+                        w.setEndPoint(lineLength - 1 - wEndPoint, counter + wEndPoint);
+                    }
+                    result.addAll(newWords);
+                }
+            
+                List<Word> newWordsRev = new ArrayList<>(wordMatch(getString(intLineRev), word));
+                if (newWordsRev.size() != 0) {
+                    for (Word w: newWordsRev) {
+                        int wStartPoint = w.startY;
+                        int wEndPoint = w.endY;
+                        w.setStartPoint(lineLength - 1 - stringLength + wStartPoint, counter + stringLength - wStartPoint);
+                        w.setEndPoint(lineLength - 1 - stringLength + wEndPoint, counter + stringLength - wEndPoint);
+                    }
+                    result.addAll(newWordsRev);
+                }
+            
+            }
+            counter++;
+            if (flag && (counter == lineLength)) break;
+        }
+        return result;
     }
     
     public static String getString(int[] crossLine) {
