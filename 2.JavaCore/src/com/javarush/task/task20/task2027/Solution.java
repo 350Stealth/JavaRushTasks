@@ -37,9 +37,11 @@ same - (1, 1) - (4, 1)
     
     public static List<Word> detectAllWords(int[][] crossword, String... words) {
         Word testWord = new Word(words[0]); // test line
+        System.out.println("--------");
         testWord.setStartPoint(1, 1); // test line
         testWord.setEndPoint(2, 2); // test line
         System.out.println(testWord); // test line
+        System.out.println("--------");
         
         if (crossword == null) return null; // check array for empty
         
@@ -292,8 +294,8 @@ same - (1, 1) - (4, 1)
                     for (Word w: newWordsRev) {
                         int wStartPoint = w.startY;
                         int wEndPoint = w.endY;
-                        w.setEndPoint(stringLength - counter + wStartPoint, stringLength - wStartPoint);
-                        w.setStartPoint(stringLength - counter + wEndPoint, stringLength - wEndPoint);
+                        w.setStartPoint(stringLength - counter + wStartPoint, stringLength - wStartPoint);
+                        w.setEndPoint(stringLength - counter + wEndPoint, stringLength - wEndPoint);
                     }
                     result.addAll(newWordsRev);
                 }
