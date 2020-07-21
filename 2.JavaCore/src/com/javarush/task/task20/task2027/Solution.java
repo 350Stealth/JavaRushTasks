@@ -19,7 +19,7 @@ public class Solution {
             {'m', 'l', 'p', 'r', 'r', 'h'},
             {'p', 'o', 'e', 'e', 'j', 'j'}
         };
-        detectAllWords(crossword, /*"home", "same", "ll", "m", "rr", "vor",*/ "re", "ran");
+        detectAllWords(crossword, "home", "same", "ll", "m", "rr", "vor", "re", "ran", "er").forEach(System.out::println);
         /*
 Ожидаемый результат
 home - (5, 3) - (2, 0)
@@ -36,23 +36,23 @@ same - (1, 1) - (4, 1)
     }
     
     public static List<Word> detectAllWords(int[][] crossword, String... words) {
-        Word testWord = new Word(words[0]); // test line
+        /*Word testWord = new Word(words[0]); // test line
         System.out.println("--------");
         testWord.setStartPoint(1, 1); // test line
         testWord.setEndPoint(2, 2); // test line
         System.out.println(testWord); // test line
-        System.out.println("--------");
+        System.out.println("--------");*/
         
         if (crossword == null) return null; // check array for empty
         
         Set<Word> setResult = new HashSet<>();
         for (String word: words) {
             // check lines
-//            setResult.addAll(findHorizontal(crossword, word));
+            setResult.addAll(findHorizontal(crossword, word));
             // check rows
-//            setResult.addAll(findVertical(crossword, word));
+            setResult.addAll(findVertical(crossword, word));
             // check straight diagonals
-//            setResult.addAll(findDiagonalStright(crossword, word));
+            setResult.addAll(findDiagonalStright(crossword, word));
             // check cross diagonals
             setResult.addAll(findDiagonalCross(crossword, word));
         }
@@ -60,9 +60,9 @@ same - (1, 1) - (4, 1)
         System.out.println();
         // output for all elements of List<Word>
         List<Word> result = new ArrayList<>(setResult);
-        for (Word word: result) {
+        /*for (Word word: result) {
             System.out.println(word);
-        }
+        }*/
         return result;
     }
     
@@ -290,12 +290,14 @@ same - (1, 1) - (4, 1)
                 }
             
                 List<Word> newWordsRev = new ArrayList<>(wordMatch(getString(intLineRev), word));
+                int xShift = counter - stringLength;
+                int yShift = /*i - 1*/stringLength;
                 if (newWordsRev.size() != 0) {
                     for (Word w: newWordsRev) {
                         int wStartPoint = w.startY;
                         int wEndPoint = w.endY;
-                        w.setStartPoint(stringLength - counter + wStartPoint, stringLength - wStartPoint);
-                        w.setEndPoint(stringLength - counter + wEndPoint, stringLength - wEndPoint);
+                        w.setStartPoint(xShift + wStartPoint, yShift - wStartPoint);
+                        w.setEndPoint(xShift + wEndPoint, yShift - wEndPoint);
                     }
                     result.addAll(newWordsRev);
                 }
@@ -335,14 +337,16 @@ same - (1, 1) - (4, 1)
                     }
                     result.addAll(newWords);
                 }
-            
+                
                 List<Word> newWordsRev = new ArrayList<>(wordMatch(getString(intLineRev), word));
+                int xShift = lineLength - (stringLength + 1);
+                int yShift = counter + stringLength;
                 if (newWordsRev.size() != 0) {
                     for (Word w: newWordsRev) {
                         int wStartPoint = w.startY;
                         int wEndPoint = w.endY;
-                        w.setStartPoint(lineLength - 1 - stringLength + wStartPoint, counter + stringLength - wStartPoint);
-                        w.setEndPoint(lineLength - 1 - stringLength + wEndPoint, counter + stringLength - wEndPoint);
+                        w.setStartPoint(xShift + wStartPoint, yShift - wStartPoint);
+                        w.setEndPoint(xShift + wEndPoint, yShift - wEndPoint);
                     }
                     result.addAll(newWordsRev);
                 }
@@ -371,13 +375,9 @@ same - (1, 1) - (4, 1)
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
 
-//            System.out.println("Word: " + testWord);
-            
             Word word = new Word(testWord);
             word.setStartPoint(matcher.start(), matcher.start());
             word.setEndPoint(matcher.end() - 1, matcher.end() - 1);
-
-//            System.out.println(word);
             
             result.add(word);
         }
