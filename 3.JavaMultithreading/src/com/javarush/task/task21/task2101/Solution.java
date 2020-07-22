@@ -15,13 +15,13 @@ public class Solution {
 
     public static byte[] getNetAddress(byte[] ip, byte[] mask) {
         byte[] result = new byte[4];
-        System.arraycopy(ip, 0, result, 0, ip.length);
+//        System.arraycopy(ip, 0, result, 0, ip.length);
         return result;
     }
 
     public static void print(byte[] bytes) {
-        for (byte aByte: bytes) {
-            System.out.print(aByte);
-        }
+        int i = 0;
+        System.out.printf("%d.%d.%d.%d", bytes[++i], bytes[++i], bytes[++i], bytes[i]);
+        System.out.println();
     }
 }
