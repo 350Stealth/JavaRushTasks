@@ -21,7 +21,20 @@ public class Solution {
 
     public static void print(byte[] bytes) {
         int i = 0;
-        System.out.printf("%d.%d.%d.%d", bytes[++i], bytes[++i], bytes[++i], bytes[i]);
+        System.out.printf("%d.%d.%d.%d", bytes[++i], bytes[++i] + 256, bytes[++i] + 256, bytes[i] + 256);
         System.out.println();
+        for(int num : bytes) {
+            String line = "";
+            for (int j = 0; j < 8; j++) {
+                int rest = num % 2;
+                num = num >> 1;
+                if (rest == 1) {
+                    line += "1";
+                } else {
+                    line += "0";
+                }
+            }
+            System.out.println(line);
+        }
     }
 }
