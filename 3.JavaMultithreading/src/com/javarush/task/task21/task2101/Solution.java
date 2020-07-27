@@ -21,7 +21,8 @@ public class Solution {
 
     public static void print(byte[] bytes) {
         int i = 0;
-        System.out.printf("%d.%d.%d.%d", bytes[++i], bytes[++i] + 256, bytes[++i] + 256, bytes[i] + 256);
+        int n1 = 0 | bytes[++i];
+        System.out.printf("%s.%d.%d.%d", n1, bytes[++i], bytes[++i], bytes[i]);
         System.out.println();
         for(int num : bytes) {
             String line = "";
