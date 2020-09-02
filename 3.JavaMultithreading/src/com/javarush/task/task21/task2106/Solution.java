@@ -20,7 +20,7 @@ public class Solution {
         this.solution = solution;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o instanceof Solution) return false;
@@ -45,8 +45,36 @@ public class Solution {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (solution != null ? solution.hashCode() : 0);
         return result;
+    }*/
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null/* || getClass() != o.getClass()*/) return false;
+        if (!(o instanceof Solution)) return false;
+        
+        Solution solution1 = (Solution) o;
+        
+        if (anInt != solution1.anInt) return false;
+        if (Double.compare(solution1.aDouble, aDouble) != 0) return false;
+        if (string != null ? !string.equals(solution1.string) : solution1.string != null) return false;
+        if (date != null ? !date.equals(solution1.date) : solution1.date != null) return false;
+        return solution != null ? solution.equals(solution1.solution) : solution1.solution == null;
     }
-
+    
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = anInt;
+        result = 31 * result + (string != null ? string.hashCode() : 0);
+        temp = Double.doubleToLongBits(aDouble);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (solution != null ? solution.hashCode() : 0);
+        return result;
+    }
+    
     public static void main(String[] args) {
 
     }
