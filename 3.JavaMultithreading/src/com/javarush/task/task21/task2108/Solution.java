@@ -32,16 +32,23 @@ public class Solution {
         }
     }
 
-    public static class Tree extends Plant {
+    public static class Tree extends Plant implements Cloneable {
         private String[] branches;
-
+    
         public Tree(String name, String[] branches) {
             super(name);
             this.branches = branches;
         }
-
+    
         public String[] getBranches() {
             return branches;
+        }
+    
+        @Override
+        protected Tree clone() throws CloneNotSupportedException {
+            Tree cloneTree = null;
+            cloneTree = new Tree(this.getName(), this.branches.clone());
+            return cloneTree;
         }
     }
 }
