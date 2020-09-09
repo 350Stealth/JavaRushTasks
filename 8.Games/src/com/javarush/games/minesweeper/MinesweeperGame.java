@@ -10,13 +10,13 @@ public class MinesweeperGame extends Game {
     private static final int SIDE = 9;
     private GameObject[][] gameField = new GameObject[SIDE][SIDE];
     private int countMinesOnField;
-
+    
     @Override
     public void initialize() {
         setScreenSize(SIDE, SIDE);
         createGame();
     }
-
+    
     private void createGame() {
         for (int y = 0; y < SIDE; y++) {
             for (int x = 0; x < SIDE; x++) {
@@ -48,7 +48,7 @@ public class MinesweeperGame extends Game {
             }
         }
     }
-
+    
     private List<GameObject> getNeighbors(GameObject gameObject) {
         List<GameObject> result = new ArrayList<>();
         for (int y = gameObject.y - 1; y <= gameObject.y + 1; y++) {
