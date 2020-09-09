@@ -34,14 +34,17 @@ public class MinesweeperGame extends Game {
     private void countMineNeighbors() {
         for (int y = 0; y < SIDE; y++) {
             for (int x = 0; x < SIDE; x++) {
-                List<GameObject> items = getNeighbors(gameField[y][x]);
-                int count = 0;
-                for (GameObject object: items) {
-                    if (object.isMine) {
-                        count++;
+                GameObject cell = gameField[y][x];
+                if (!cell.isMine) {
+                    List<GameObject> items = getNeighbors(cell);
+                    int count = 0;
+                    for (GameObject object: items) {
+                        if (object.isMine) {
+                            count++;
+                        }
                     }
+                    cell.countMineNeighbors = count;
                 }
-                gameField[y][x].countMineNeighbors = count;
             }
         }
     }
