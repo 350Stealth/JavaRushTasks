@@ -24,8 +24,13 @@ public class Solution {
     }
 
     public static StringBuilder getLine(String... words) {
+        if (words.length == 0) new StringBuffer();
         StringBuilder result = new StringBuilder();
+        boolean flag = false;
+        List<String> stringList = Arrays.asList(words.clone());
+        while (!flag) {
         
+        }
         return result;
     }
     
