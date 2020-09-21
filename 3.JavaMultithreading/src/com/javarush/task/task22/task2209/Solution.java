@@ -29,7 +29,9 @@ public class Solution {
         boolean flag = false;
         List<String> stringList = Arrays.asList(words.clone());
         while (!flag) {
-            
+            while (stringList.iterator().hasNext()) {
+                
+            }
         }
         return result;
     }
