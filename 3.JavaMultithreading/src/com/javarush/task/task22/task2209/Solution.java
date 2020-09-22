@@ -27,7 +27,8 @@ public class Solution {
         if (words.length == 0) new StringBuffer();
         StringBuilder result = new StringBuilder();
         boolean flag = false;
-        List<String> stringList = Arrays.asList(words.clone());
+        LinkedList<String> stringList = new LinkedList<>();
+        stringList = (LinkedList<String>) Arrays.asList(words.clone());
         while (!flag) {
             while (stringList.iterator().hasNext()) {
                 
