@@ -1,0 +1,17 @@
+snakeParts(
+ 1. gObj[0](
+    x = 7,
+    y = 7);
+ 2. gObj[1](
+    x = 8,
+    y = 7);
+ 3. gObj[2](
+    x = 9,
+    y = 7);
+)
+
+snakeParts.get(0) -> gObj[0](x = 7, y = 7)
+
+gObj[0].x -> 7
+
+snakeParts.get(0).x
