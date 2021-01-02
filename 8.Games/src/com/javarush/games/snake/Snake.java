@@ -1,6 +1,7 @@
 package com.javarush.games.snake;
 
-import com.javarush.engine.cell.*;
+import com.javarush.engine.cell.Color;
+import com.javarush.engine.cell.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,18 @@ public class Snake {
     }
     
     public void setDirection(Direction direction) {
+        if ((this.direction == Direction.LEFT) && (direction == Direction.RIGHT)) {
+            return;
+        }
+        if ((this.direction == Direction.RIGHT) && (direction == Direction.LEFT)){
+            return;
+        }
+        if ((this.direction == Direction.UP) && (direction == Direction.DOWN)){
+            return;
+        }
+        if ((this.direction == Direction.DOWN) && (direction == Direction.UP)){
+            return;
+        }
         this.direction = direction;
     }
     
