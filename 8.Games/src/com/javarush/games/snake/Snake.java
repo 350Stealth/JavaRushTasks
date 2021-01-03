@@ -54,11 +54,15 @@ public class Snake {
         this.direction = direction;
     }
     
-    public void move() {
+    public void move(Apple apple) {
         GameObject newHead = createNewHead();
         if ((newHead.x >= 0) && (newHead.x < SnakeGame.WIDTH) && (newHead.y >= 0) && (newHead.y < SnakeGame.HEIGHT)) {
             snakeParts.add(0, newHead);
-            removeTail();
+            if ((apple.x == snakeParts.get(0).x) && (apple.y == snakeParts.get(0).y)) {
+                apple.isAlive = false;
+            } else {
+                removeTail();
+            }
         } else {
             isAlive = false;
         }

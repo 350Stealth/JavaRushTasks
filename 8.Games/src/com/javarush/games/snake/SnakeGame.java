@@ -8,6 +8,7 @@ public class SnakeGame extends Game {
     public static final int HEIGHT = 15;
     private Snake snake;
     private int turnDelay;
+    private Apple apple;
     
     @Override
     public void initialize() {
@@ -18,14 +19,10 @@ public class SnakeGame extends Game {
     
     private void createGame() {
         snake = new Snake(WIDTH / 2, HEIGHT / 2);
+        apple = new Apple(5, 5);
         drawScene();
         turnDelay = 300;
         setTurnTimer(turnDelay);
-/*
-        Apple newApple = new Apple(7, 7 );
-        newApple.draw(this);
-*/
-    
     }
     
     private void drawScene() {
@@ -35,18 +32,17 @@ public class SnakeGame extends Game {
             }
         }
         snake.draw(this);
+        apple.draw(this);
     }
     
     @Override
     public void onTurn(int step) {
-//        super.onTurn(step);
-        snake.move();
+        snake.move(apple);
         drawScene();
     }
     
     @Override
     public void onKeyPress(Key key) {
-//        super.onKeyPress(key);
         switch (key) {
             case RIGHT:
                 snake.setDirection(Direction.RIGHT);
