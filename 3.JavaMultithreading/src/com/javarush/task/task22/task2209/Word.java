@@ -9,8 +9,8 @@ public class Word {
     public Word(String word) {
         this.word = word;
         if (word != null && word.length() >= 1) {
-            firstLetter = word.substring(0, 1);
-            lastLetter = word.substring(word.length() - 1);
+            firstLetter = word.substring(0, 1).toLowerCase();
+            lastLetter = word.substring(word.length() - 1).toLowerCase();
         }
     }
     

@@ -13,14 +13,16 @@ public class Solution {
         scanner.close();
         
         scanner = new Scanner(new FileReader(fileName));
-        List<String> stringList = new LinkedList<>();
+        List<Word> stringList = new ArrayList<>();
         while (scanner.hasNext()) {
-            stringList.add(scanner.next());
+            stringList.add(new Word(scanner.next()));
         }
         scanner.close();
         //...
-        StringBuilder result = getLine(stringList.toArray(new String[0]));
-        System.out.println(result.toString());
+        boolean flag = false;
+        while (!flag) {
+        
+        }
     }
 
     public static StringBuilder getLine(String... words) {
