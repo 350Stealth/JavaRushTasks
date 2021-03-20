@@ -41,7 +41,7 @@ public class Word {
         return word.hashCode();
     }
     
-    public int isMatch(Word first, Word second) {
+    public static int isMatch(Word first, Word second) {
         // возвращает 1 если последняя буква первого слова совпадает с первой буквой второго слова
         if (first.getLastLetter().equalsIgnoreCase(second.getFirstLetter())) {
             return 1;
