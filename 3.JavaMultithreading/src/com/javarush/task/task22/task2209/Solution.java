@@ -1,6 +1,8 @@
 package com.javarush.task.task22.task2209;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /* 
@@ -19,12 +21,10 @@ public class Solution {
         }
         scanner.close();
         //...
-        boolean flag = false;
-        while (!flag) {
+        String[] wordsArray = Word.makeArrayFromWords(stringList);
         
-        }
     }
-
+    
     public static StringBuilder getLine(String... words) {
         if (words.length == 0) new StringBuffer();
         StringBuilder result = new StringBuilder();
