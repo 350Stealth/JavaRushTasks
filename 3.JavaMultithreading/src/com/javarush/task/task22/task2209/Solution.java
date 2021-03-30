@@ -22,20 +22,34 @@ public class Solution {
         scanner.close();
         //...
         String[] wordsArray = Word.makeArrayFromWords(stringList);
+    
+/*        for (int i = 0; i < wordsArray.length; i++) {
+            System.out.println(wordsArray[i]);
+        }*/
         
+        String wordsLine = getLine(wordsArray).toString();
+        
+        System.out.println(wordsLine);
     }
     
     public static StringBuilder getLine(String... words) {
-        if (words.length == 0) new StringBuffer();
+        if (words.length == 0) {
+            return new StringBuilder();
+        }
         StringBuilder result = new StringBuilder();
-        boolean flag = false;
+        result.append(words[0]);
+        for (int i = 1; i < words.length; i++) {
+            result.append(" ");
+            result.append(words[i]);
+        }
+        /*boolean flag = false;
         LinkedList<String> stringList = new LinkedList<>();
         stringList = (LinkedList<String>) Arrays.asList(words.clone());
         while (!flag) {
             while (stringList.iterator().hasNext()) {
                 
             }
-        }
+        }*/
         return result;
     }
     

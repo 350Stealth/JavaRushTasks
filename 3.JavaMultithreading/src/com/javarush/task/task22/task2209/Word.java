@@ -1,6 +1,7 @@
 package com.javarush.task.task22.task2209;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Word {
@@ -58,15 +59,26 @@ public class Word {
     
     // формирует массив с нужной цепочкой слов (последная буква предыдущего совпадает с первой следующего)
     public static String[] makeArrayFromWords (List<Word> wordList) {
-        String[] wordsArray = new String[wordList.size()];
-        List<Word> words = wordList;
-/*        for (int i = 0; i < wordList.size(); i++) {
-            wordsArray[i] = wordList.get(i).getWord();
-        }*/
-        int i = 0;
-        while (!words.isEmpty()) {
-        
+        if (wordList.isEmpty()) {
+            return null;
         }
+        String[] wordsArray = new String[wordList.size()];
+        List<Word> words = new ArrayList<>();
+        for (int i = 0; i < wordList.size(); i++) {
+            words.add(wordList.get(i));
+        }
+        Word buffer = words.get(0);
+        for (int i = 1; i < words.size(); i++) {
+            if (Word.isMatch(buffer, words.get(i)) == 1) {
+                wordsArray[i] = words.get(i).getWord();
+                buffer = words.get(i);
+            } else {
+                Collections.shuffle(words);
+                buffer = words.get(0);
+                i = 0;
+            }
+        }
+        wordsArray[0] = words.get(0).getWord();
         return wordsArray;
     }
 }
