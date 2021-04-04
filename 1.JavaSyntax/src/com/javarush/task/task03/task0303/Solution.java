@@ -13,6 +13,7 @@ public class Solution {
 
     public static double convertEurToUsd(int eur, double course) {
         //напишите тут ваш код
-        return (eur * course);
+        double usd = eur * course;
+        return usd;
     }
 }
