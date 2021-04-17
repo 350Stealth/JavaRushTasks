@@ -6,14 +6,14 @@ import java.util.List;
 public class Snake {
     private List<SnakeSection> sections;
     private boolean isAlive;
+    private SnakeDirection direction;
+    
     
     public Snake(int x, int y) {
         isAlive = true;
         sections = new ArrayList<>();
         sections.add(new SnakeSection(x, y));
     }
-    
-    private SnakeDirection direction;
     
     public SnakeDirection getDirection() {
         return direction;
@@ -40,6 +40,38 @@ public class Snake {
     }
     
     public void move() {
+        if (!isAlive) {
+            return;
+        }
+        switch (direction) {
+            case UP:
+                move(0, -1);
+                break;
+            case DOWN:
+                move(0, 1);
+                break;
+            case RIGHT:
+                move(1, 0);
+                break;
+            case LEFT:
+                move(-1, 0);
+                break;
+        }
+    }
+    
+    public void move(int x, int y){
+    
+    }
+    
+    public void checkWBorders(SnakeSection head) {
+        int x = head.getX();
+        int y = head.getY();
+        if (x < 0 || x > 15) {
         
+        }
+    }
+    
+    public void checkHead(SnakeSection head) {
+    
     }
 }
