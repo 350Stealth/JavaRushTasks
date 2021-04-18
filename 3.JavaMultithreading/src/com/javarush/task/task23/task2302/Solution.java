@@ -1,13 +1,13 @@
-package com.javarush.task.task23.task2301;
+package com.javarush.task.task23.task2302;
 
 /* 
-Запрети наследование
+Запрети переопределение
 */
 
 public class Solution {
 
-    public static final class Listener {
-        public void onMouseDown(int x, int y) {
+    public static class Listener {
+        public final void onMouseDown(int x, int y) {
             // Do something when the mouse down event occurs
         }
 
