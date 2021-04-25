@@ -10,6 +10,13 @@ import java.io.InputStreamReader;
 public class Solution {
     public static void main(String[] args) throws Exception {
         //напишите тут ваш код
-
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        
+        String name = reader.readLine();
+        int num1 = Integer.parseInt(reader.readLine());
+        int num2 = Integer.parseInt(reader.readLine());
+        reader.close();
+    
+        System.out.printf("%s получает %d через %d лет.", name, num1, num2);
     }
 }
