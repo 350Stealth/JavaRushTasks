@@ -11,6 +11,7 @@ public class Solution implements Action {
 
     private Action solutionAction = new Action() {
         //напишите тут ваш код
+        
 
         public void someAction() {
             //напишите тут ваш код
