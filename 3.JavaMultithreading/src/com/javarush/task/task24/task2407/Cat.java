@@ -30,6 +30,8 @@ public class Cat implements Pet {
      * @return экземпляр класса CatPet
      */
     public Sayable toSayable(final int i) {
+        class CatPet
+        
         return null;
     }
 }
