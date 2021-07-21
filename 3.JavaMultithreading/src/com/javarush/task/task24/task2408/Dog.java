@@ -9,11 +9,11 @@ import java.util.Date;
  */
 public class Dog implements Pet {
     private String name;
-
+    
     public Dog(String name) {
         this.name = name;
     }
-
+    
     /**
      * Если так получилось, что есть готовый класс А (тут SuperDog) с логикой, которую вы хотите использовать.
      * То возможны 3 способа:
@@ -34,36 +34,38 @@ public class Dog implements Pet {
      * Для форматирования даты используйте formatter из класса SuperDog.
      * <p/>
      * <b>Пример вывода:</b>
-     *  *** Барбос ***  лает гааааав! 13-ноя-2013 Ср
-     *  *** Тузик ***  лает гаав! 13-ноя-2013 Ср
-     *  *** Бобик ***  лает гааав! 13-ноя-2013 Ср
+     * *** Барбос ***  лает гааааав! 13-ноя-2013 Ср
+     * *** Тузик ***  лает гаав! 13-ноя-2013 Ср
+     * *** Бобик ***  лает гааав! 13-ноя-2013 Ср
      * Мышь пищит.
-     *  *** Шарик ***  спит.
+     * *** Шарик ***  спит.
      *
      * @param i количество букв 'а' в слове гав
      * @return экземпляр класса DogPet
      */
     public Sayable toSayable(final int i) {
-        class DogPet extends SuperDog implements Sayable{
+        class DogPet extends SuperDog implements Sayable {
             @Override
             public String say() {
+                String woof;
                 if (i < 1) {
-                    System.out.printf("%s  спит.", getName());
+                    woof = String.format("%s спит.", getName());
                 } else {
-                    String woof = "г";
+                    woof = "г";
                     for (int j = 0; j < i; j++) {
                         woof = woof + "а";
                     }
-                    woof = woof + "в!";
-                    
+                    woof = woof + "в! ";
+                    woof = String.format("%s лает %s%s", getName(), woof, formatter.format(new Date()));
                 }
-                return null;
+                System.out.println(woof);
+                return woof;
             }
             
-            private String getName(){
-                return String.format(" %s %s %s ", getSuperQuotes(), Dog.this.name, getSuperQuotes());
+            private String getName() {
+                return String.format("%s%s%s", getSuperQuotes(), Dog.this.name, getSuperQuotes());
             }
         }
-        return null;
+        return new DogPet();
     }
 }
