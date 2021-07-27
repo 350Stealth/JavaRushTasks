@@ -17,6 +17,75 @@ public class Util {
     public static List<Jeans> getAllJeans() {
 
         //add your code here
+        abstract class AbstractJeans implements Jeans{
+            int id;
+            int length;
+            int size;
+            double price;
+    
+            public AbstractJeans(int id, int length, int size, double price) {
+                this.id = id;
+                this.length = length;
+                this.size = size;
+                this.price = price;
+            }
+    
+            @Override
+            public int getId() {
+                return this.id;
+            }
+    
+            @Override
+            public double getPrice() {
+                return this.price;
+            }
+    
+            @Override
+            public abstract String getTM();
+    
+            @Override
+            public int getLength() {
+                return this.length;
+            }
+    
+            @Override
+            public int getSize() {
+                return this.size;
+            }
+    
+            @Override
+            public String toString() {
+                return String.format("%s{id=%s, length=%s, size=%s, price=%s}",
+                    this.getClass().getSimpleName(), id, length, size, price)/*"AbstractJeans{" +
+                    "id=" + id +
+                    ", length=" + length +
+                    ", size=" + size +
+                    ", price=" + price +
+                    '}'*/;
+            }
+        }
+        
+        class Levis extends AbstractJeans{
+            public Levis(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+    
+            @Override
+            public String getTM() {
+                return Company.Levis.fullName;
+            }
+        }
+        
+        class Denim extends AbstractJeans{
+            public Denim(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+    
+            @Override
+            public String getTM() {
+                return Company.Denim.fullName;
+            }
+        }
 
         List<Jeans> allJeans = new LinkedList<>();
 
