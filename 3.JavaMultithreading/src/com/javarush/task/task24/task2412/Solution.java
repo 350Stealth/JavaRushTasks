@@ -46,6 +46,16 @@ public class Solution {
             public int compare(Stock stock1, Stock stock2) {
                 return 0;
             }
+            
+            private int compareNames(String firstName, String secondName) {
+                return firstName.compareTo(secondName);
+            }
+            
+            private int compareTimes(Date firstDate, Date secondDate) {
+                int score;
+                
+                return 0;
+            }
         });
     }
 
