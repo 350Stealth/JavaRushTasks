@@ -11,7 +11,7 @@ public class Controller {
         this.model = model;
     }
     
-    public void onShowAllUsers(){
+    public void onShowAllUsers() {
         model.loadUsers();
         usersView.refresh(model.getModelData());
     }
@@ -20,5 +20,8 @@ public class Controller {
         this.usersView = usersView;
     }
     
-    
+    public void onShowAllDeletedUsers() {
+        model.loadDeletedUsers();
+        usersView.refresh(model.getModelData());
+    }
 }
