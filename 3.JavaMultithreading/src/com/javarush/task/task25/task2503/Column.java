@@ -1,22 +1,23 @@
 package com.javarush.task.task25.task2503;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public enum Column implements Columnable{
+public enum Column implements Columnable {
     Customer("Customer"),
     BankName("Bank Name"),
     AccountNumber("Account Number"),
     Amount("Available Amount");
-
+    
     private String columnName;
-
+    
     private static int[] realOrder;
-
+    
     private Column(String columnName) {
         this.columnName = columnName;
     }
-
+    
     /**
      * Задает новый порядок отображения колонок, который хранится в массиве realOrder.
      * realOrder[индекс в энуме] = порядок отображения; -1, если колонка не отображается.
@@ -26,10 +27,10 @@ public enum Column implements Columnable{
      */
     public static void configureColumns(Column... newOrder) {
         realOrder = new int[values().length];
-        for (Column column : values()) {
+        for (Column column: values()) {
             realOrder[column.ordinal()] = -1;
             boolean isFound = false;
-
+            
             for (int i = 0; i < newOrder.length; i++) {
                 if (column == newOrder[i]) {
                     if (isFound) {
@@ -41,7 +42,7 @@ public enum Column implements Columnable{
             }
         }
     }
-
+    
     /**
      * Вычисляет и возвращает список отображаемых колонок в сконфигурированом порядке (см. метод configureColumns)
      * Используется поле realOrder.
@@ -49,24 +50,38 @@ public enum Column implements Columnable{
      * @return список колонок
      */
     public static List<Column> getVisibleColumns() {
-        List<Column> result = new LinkedList<>();
-
+        List<Column> result = new ArrayList<>();
+        
+        int[] newOrder = new int[realOrder.length];
+        Arrays.fill(newOrder, -1);
+        
+        for (int i = 0; i < realOrder.length; i++) {
+            if (realOrder[i] != -1) {
+                newOrder[realOrder[i]] = i;
+            }
+        }
+        
+        for (int j: newOrder) {
+            if (j != -1) {
+                result.add(Column.values()[j]);
+            }
+        }
         return result;
     }
     
     
     @Override
     public String getColumnName() {
-        return null;
+        return this.columnName;
     }
     
     @Override
     public boolean isShown() {
-        return false;
+        return realOrder[this.ordinal()] != -1;
     }
     
     @Override
     public void hide() {
-    
+        realOrder[this.ordinal()] = -1;
     }
 }
