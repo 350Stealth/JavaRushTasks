@@ -20,16 +20,40 @@ public class Solution {
     public static class Car {
         protected List<Wheel> wheels;
 
-        public Car() {
+        public Car() throws Exception{
             //init wheels here
+            wheels = new ArrayList<>();
+            Set<String> wheelNames = new HashSet<>();
+            for (Wheel item: Wheel.values()) {
+                wheelNames.add(item.name());
+            }
+            
+            if (wheelNames.size() != loadWheelNamesFromDB().length) {
+                throw new Exception();
+            }
+            for (String item: loadWheelNamesFromDB()) {
+                if (wheelNames.contains(item)) {
+                    wheels.add(Wheel.valueOf(item));
+                } else {
+                    throw new Exception();
+                }
+            }
+//            ---
+            for (Wheel item: wheels) {
+                System.out.println(item);
+            }
+//            ---
         }
 
         protected String[] loadWheelNamesFromDB() {
             //this method returns mock data
             return new String[]{"FRONT_LEFT", "FRONT_RIGHT", "BACK_LEFT", "BACK_RIGHT"};
+//            return new String[]{"FRONT_LEFT", "FRONT_RIGHT", "BACK_LEFT", "BACK_RIGHT"};
+//            return new String[]{"FRONT_RIGHT", "FRONT_RIGHT", "BACK_LEFT"};
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
+//        Car car = new Car();
     }
 }
