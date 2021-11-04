@@ -13,17 +13,17 @@ public class Solution extends Thread {
     private static final int BUFFER_SIZE = 2000;    //2000 bytes
     private final Socket socket;
     private final InputStream in;
-
+    
     public Solution(Socket socket) throws IOException {
         this.socket = socket;
         this.in = socket.getInputStream();
     }
-
+    
     public void interrupt() {
         //implement logic here
         return;
     }
-
+    
     public void run() {
         try {
             byte[] buf = new byte[BUFFER_SIZE];
