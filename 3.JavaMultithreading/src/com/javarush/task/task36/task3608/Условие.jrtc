@@ -24,6 +24,7 @@ public void changeUserData(String name, long id, int level)
 5.	Интерфейс Model должен содержать объявление метода, который ты ранее реализовал в классе MainModel.
 6.	В классе FakeModel в теле метода, помещенного в интерфейс Model, необходимо бросить UnsupportedOperationException.
 
+MVC (8)
 
 MVC (9)
 
