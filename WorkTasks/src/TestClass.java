@@ -23,13 +23,12 @@ public class TestClass {
     
     public static void correctExpenses(int salary, int transportMoney, int foodMoney, int savings) { // Объявите метод correctExpenses
         // Тело метода дано ниже
-        int leftMonew;
+        int leftMoney;
         
         int expensesSum = transportMoney + foodMoney + savings; // Считаем расходы
         if (expensesSum > salary) { // Проверяем, не превышают ли расходы зарплату
             int lackMoney = expensesSum - salary; // Считаем, сколько не хватает
-            leftMoney = salary - expensesSum; // Считаем излишек средств
-            
+    
             // Пока не начнёт хватать денег на еду — сокращаем траты на 100 рублей
             while ((salary - foodMoney) < transportMoney) {
                 foodMoney = foodMoney - 100;
@@ -38,13 +37,14 @@ public class TestClass {
             if (transportMoney + foodMoney + savings > salary) {
                 savings = 0;
             }
-            
+    
             // Печатаем рекомендации
             System.out.println("Придётся пересмотреть планы, вам не хватает " + lackMoney);
             System.out.println("Рекомендуемые траты: "
                 + "еда — " + foodMoney+", "
                 + "сбережения — " + savings+".");
         } else {
+            leftMoney = salary - expensesSum; // Считаем излишек средств
             System.out.println("В этом месяце дебет с кредитом сошлись!");
             System.out.println("Свободных средств " + leftMoney);
         }
