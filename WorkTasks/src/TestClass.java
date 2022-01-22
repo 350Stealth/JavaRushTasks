@@ -1,52 +1,56 @@
-import java.util.Scanner;
-
 public class TestClass {
     
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Какую зарплату вы получите в этом месяце?");
-        int salary = scanner.nextInt();
-        System.out.println("Сколько планируете потратить на транспорт?");
-        int transportMoney = scanner.nextInt();
-        System.out.println("Сколько запланировано на супермаркеты?");
-        int foodMoney = scanner.nextInt();
-        System.out.println("Какую сумму хотите отложить?");
-        int savings = scanner.nextInt();
-
-        correctExpenses(salary, transportMoney, foodMoney, savings); // Вызовите метод correctExpenses с правильными аргументами
+        //Кормим кота
+        sayHello("Пиксель");
+        double[] feedExpensesCat = {100.50, 236.0, 510.6, 150.20, 80.0, 172.0, 135.4};
+    
+        double maxFeedExpenseCat = findMaxExpense(feedExpensesCat);
+        System.out.println("Твой самый дорогой корм стоил " + maxFeedExpenseCat);
+    
+        double sumFeedCat = findExpensesSum(feedExpensesCat);
+        System.out.println("Всего на корм было потрачено " + sumFeedCat);
         
-        // Напечатайте запланированные траты
-        System.out.println("Вы планировали потратить: транспорт — " + transportMoney+", "
-            + "еда — " + foodMoney +", "
-            + "сбережения — " + savings +".");
+        sayEnjoyMeal("Пиксель");
+        
+        //Кормим хомяка
+        sayHello("Байт");
+        double[] feedExpensesHamster = {70.50, 146.0, 710.6, 250.20, 83.0, 19.0, 55.4};
+    
+        double maxFeedExpenseHamster = findMaxExpense(feedExpensesHamster);
+        System.out.println("Твой самый дорогой корм стоил " + maxFeedExpenseHamster);
+    
+        double sumFeedHamster = findExpensesSum(feedExpensesHamster);
+        System.out.println("Всего на корм было потрачено " + sumFeedHamster);
+        
+        sayEnjoyMeal("Байт");
     }
     
-    public static void correctExpenses(int salary, int transportMoney, int foodMoney, int savings) { // Объявите метод correctExpenses
-        // Тело метода дано ниже
-        int leftMoney;
-        
-        int expensesSum = transportMoney + foodMoney + savings; // Считаем расходы
-        if (expensesSum > salary) { // Проверяем, не превышают ли расходы зарплату
-            int lackMoney = expensesSum - salary; // Считаем, сколько не хватает
-    
-            // Пока не начнёт хватать денег на еду — сокращаем траты на 100 рублей
-            while ((salary - foodMoney) < transportMoney) {
-                foodMoney = foodMoney - 100;
-            }
-            // Если не хватает денег на жизнь — не откладываем
-            if (transportMoney + foodMoney + savings > salary) {
-                savings = 0;
-            }
-    
-            // Печатаем рекомендации
-            System.out.println("Придётся пересмотреть планы, вам не хватает " + lackMoney);
-            System.out.println("Рекомендуемые траты: "
-                + "еда — " + foodMoney+", "
-                + "сбережения — " + savings+".");
-        } else {
-            leftMoney = salary - expensesSum; // Считаем излишек средств
-            System.out.println("В этом месяце дебет с кредитом сошлись!");
-            System.out.println("Свободных средств " + leftMoney);
+    private static double findExpensesSum(double[] feedExpenses) {
+        double sumFeed = 0;
+        for (int i = 0; i < feedExpenses.length; i++) {
+            sumFeed = sumFeed + feedExpenses[i];
         }
+        return sumFeed;
     }
+    
+    private static double findMaxExpense(double[] expenses) {
+        double maxFeedExpense = 0;
+        for (int i = 0; i < expenses.length; i++) {
+            if (expenses[i] > maxFeedExpense) {
+                maxFeedExpense = expenses[i];
+            }
+        }
+        return maxFeedExpense;
+    }
+    
+    private static void sayHello(String name) {
+        System.out.println("Привет, " + name + "!");
+    }
+    
+    private static void sayEnjoyMeal(String name) {
+        System.out.println("Приятного аппетита, " + name + "!");
+    }
+    
+    
 }
